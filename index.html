@@ -1,0 +1,870 @@
+<title>XDemat</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="XDemat: stock market account-opening assistance, trading education and the XRover 5 Intelligent Candle System.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: navy hero with an illustrated candle chart, then alternating light sections; XRover 5 gets its own premium navy band. */
+:root{
+  --bg:#F5F7FB; --surface:#FFFFFF; --surface-2:#EDF1F7;
+  --ink:#0E1A2E; --muted:#526079; --line:#D9E0EB;
+  --navy:#0A1A35; --navy-2:#11284E; --navy-line:#24406E;
+  --on-navy:#EEF2F8; --on-navy-muted:#A8B6CD;
+  --gold:#0A5BFD; --gold-soft:rgba(10,91,253,.10); --gold-ink:#0B4FD9;
+  --cta:#F7861E; --cta-hover:#FF9B3D; --head-bg:rgba(255,255,255,.97); --head-ink:#0A1A35; --head-muted:#46546D; --head-line:#E1E7F0;
+  --up:#1E9C6A; --down:#D04A40;
+  --f-display:"Outfit","Segoe UI",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:14px; --maxw:1180px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#07122A; --surface:#0D1E3B; --surface-2:#112647;
+  --ink:#E7ECF4; --muted:#9BA9BF; --line:#1E3356;
+  --navy:#040C1D; --navy-2:#0B1C3A; --navy-line:#1F3863;
+  --on-navy:#EEF2F8; --on-navy-muted:#A8B6CD;
+  --gold:#4C8FFF; --gold-soft:rgba(76,143,255,.16); --gold-ink:#86B5FF;
+  --up:#33B583; --down:#E0645A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#07122A; --surface:#0D1E3B; --surface-2:#112647;
+  --ink:#E7ECF4; --muted:#9BA9BF; --line:#1E3356;
+  --navy:#040C1D; --navy-2:#0B1C3A; --navy-line:#1F3863;
+  --on-navy:#EEF2F8; --on-navy-muted:#A8B6CD;
+  --gold:#4C8FFF; --gold-soft:rgba(76,143,255,.16); --gold-ink:#86B5FF;
+  --up:#33B583; --down:#E0645A; color-scheme:dark}
+
+*{box-sizing:border-box}
+.on-navy,.pillar.feature,.path.x,.foot{--gold:#5B9BFF;--gold-ink:#8DB8FF;--gold-soft:rgba(91,155,255,.16)}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.section{padding-block:96px}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink);font-weight:500;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--gold);border-radius:2px}
+.on-navy .eyebrow{color:var(--gold)}
+.h2{font-size:clamp(30px,4vw,44px);font-weight:700}
+.lead{font-size:18.5px;color:var(--muted);max-width:62ch}
+.sec-head{display:grid;gap:16px;margin-bottom:48px;max-width:760px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 15.5px/1 var(--f-body);padding:15px 22px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s ease,border-color .2s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-gold{background:linear-gradient(135deg,var(--cta-hover),var(--cta));color:#1B1004;box-shadow:0 8px 20px -10px rgba(247,134,30,.7)}
+.btn-gold:hover{background:var(--cta-hover)}
+.btn-ghost{border-color:var(--navy-line);color:var(--on-navy)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-line{border-color:var(--line);color:var(--ink);background:var(--surface)}
+.btn-line:hover{border-color:var(--gold)}
+.btn svg{width:16px;height:16px}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--gold-ink);text-decoration:none;font-size:15px}
+.link-arrow:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* Header */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--head-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--head-line);box-shadow:0 6px 24px -18px rgba(10,26,53,.5)}
+.head-row{display:flex;align-items:center;gap:24px;height:92px}
+.logo-img{display:block;height:74px;width:auto}
+@media (max-width:960px){.head-row{height:76px}.logo-img{height:60px}}
+.logo-card{display:inline-block;background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:18px}
+.logo-card img{display:block;height:64px;width:auto}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--on-navy);font:700 23px/1 var(--f-display);letter-spacing:-.01em}
+.logo b{color:var(--gold);font-weight:700}
+.logo svg{width:26px;height:26px}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{color:var(--head-muted);text-decoration:none;font-weight:500;font-size:15px;padding:8px 12px;border-radius:8px}
+.nav a:hover{color:var(--head-ink);background:#EEF3FB}
+.head-cta{padding:11px 18px;font-size:14.5px}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--head-line);color:var(--head-ink);border-radius:10px;width:44px;height:44px;cursor:pointer}
+.menu-btn svg{width:20px;height:20px}
+@media (max-width:960px){
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center}
+  .head-cta{display:none}
+  .nav{position:absolute;left:0;right:0;top:76px;flex-direction:column;background:#fff;border-bottom:1px solid var(--head-line);padding:10px max(20px,env(safe-area-inset-right,0px)) 18px max(20px,env(safe-area-inset-left,0px));display:none}
+  .nav.open{display:flex}
+  .nav a{padding:12px 8px;font-size:16px}
+}
+
+/* Hero */
+.hero{background:radial-gradient(1000px 500px at 85% 10%,rgba(30,110,255,.13),transparent 60%),linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);color:var(--on-navy);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(180deg,#000 30%,transparent);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-block:80px 88px;position:relative;z-index:1}
+.hero h1{font-size:clamp(38px,5vw,58px);font-weight:700;letter-spacing:-.02em}
+.hero h1 span{color:var(--gold)}
+.hero .tag{font-size:19px;color:var(--on-navy);margin-top:22px;font-weight:500}
+.hero .sub{color:var(--on-navy-muted);margin-top:12px;max-width:54ch;font-size:17px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:34px;font-size:14px;color:var(--on-navy-muted)}
+.hero-meta span{display:inline-flex;align-items:center;gap:8px}
+.hero-meta i{width:7px;height:7px;border-radius:50%;background:var(--gold);display:inline-block}
+.chart-card{background:rgba(6,15,32,.55);border:1px solid var(--navy-line);border-radius:18px;padding:18px 18px 12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);min-width:0}
+.chart-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--f-mono);font-size:12.5px;color:var(--on-navy-muted);margin-bottom:8px;flex-wrap:wrap}
+.chart-top strong{color:var(--on-navy);font-weight:500}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid var(--navy-line);font-size:11.5px}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+#chart{width:100%;height:auto;display:block}
+.chart-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--f-mono);font-size:11.5px;color:var(--on-navy-muted);padding-top:8px;border-top:1px dashed var(--navy-line);margin-top:6px}
+.chart-legend span{display:inline-flex;align-items:center;gap:6px}
+.chart-legend b{width:14px;height:3px;border-radius:2px;display:inline-block}
+.chart-note{font-size:11.5px;color:var(--on-navy-muted);margin-top:6px;opacity:.85}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px;padding-block:56px 64px}}
+
+.risk-strip{background:var(--surface-2);border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.risk-strip .wrap{padding-block:12px;display:flex;gap:10px;align-items:flex-start}
+.risk-strip svg{flex:none;width:18px;height:18px;color:var(--gold-ink);margin-top:2px}
+
+/* Pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s ease,transform .2s ease}
+.pillar:hover{border-color:var(--gold);transform:translateY(-2px)}
+.pillar .ico{width:48px;height:48px;border-radius:12px;background:var(--gold-soft);color:var(--gold-ink);display:grid;place-items:center}
+.pillar .ico svg{width:24px;height:24px}
+.pillar h3{font-size:22px;font-weight:600}
+.pillar p{color:var(--muted);flex:1}
+.pillar.feature{background:var(--navy);border-color:var(--navy-line);color:var(--on-navy)}
+.pillar.feature p{color:var(--on-navy-muted)}
+.pillar.feature .ico{background:rgba(76,143,255,.16);color:var(--gold)}
+.pillar.feature .link-arrow{color:var(--gold)}
+@media (max-width:900px){.pillars{grid-template-columns:1fr}}
+
+/* Why */
+.why{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.why-list{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.why-list li{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.why-list .chk{width:28px;height:28px;border-radius:50%;background:var(--gold-soft);color:var(--gold-ink);display:grid;place-items:center}
+.why-list .chk svg{width:15px;height:15px}
+.why-list h4{font-size:18px;font-weight:600;margin-bottom:4px}
+.why-list p{color:var(--muted);font-size:15.5px}
+@media (max-width:900px){.why{grid-template-columns:1fr;gap:32px}}
+
+/* About */
+.about-band{background:var(--surface);border-block:1px solid var(--line)}
+.about-top{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.about-top .body{display:grid;gap:16px;color:var(--muted);font-size:17px}
+.mv{display:grid;gap:16px}
+.mv-card{border-radius:var(--r);padding:26px;border:1px solid var(--line);background:var(--bg)}
+.mv-card .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:8px}
+.mv-card p{font-family:var(--f-display);font-size:20px;line-height:1.4;font-weight:500}
+.approach{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:64px}
+.ap h4{font-size:18px;font-weight:600;margin:14px 0 6px}
+.ap p{color:var(--muted);font-size:15px}
+.ap .bar{height:3px;width:40px;background:var(--gold);border-radius:3px}
+.commit{margin-top:56px;padding:30px 32px;border-radius:var(--r);background:var(--surface-2);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+.commit svg{width:30px;height:30px;color:var(--gold-ink)}
+.commit p{color:var(--muted)}
+.commit p strong{color:var(--ink)}
+@media (max-width:900px){.about-top{grid-template-columns:1fr;gap:32px}.approach{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.approach{grid-template-columns:1fr}.commit{grid-template-columns:1fr}}
+
+/* Services */
+.svc{display:grid;grid-template-columns:200px 1fr;gap:40px;padding-block:44px;border-top:1px solid var(--line)}
+.svc:first-of-type{border-top:0;padding-top:0}
+.svc-tag{font-family:var(--f-mono);font-size:13px;color:var(--muted);display:grid;gap:6px;align-content:start}
+.svc-tag b{font-family:var(--f-display);font-size:44px;color:var(--gold);font-weight:600;line-height:1}
+.svc h3{font-size:clamp(24px,3vw,30px);font-weight:700;margin-bottom:12px}
+.svc .intro{color:var(--muted);max-width:66ch;margin-bottom:22px}
+.svc-cols{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+.ticks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ticks li{position:relative;padding-left:28px}
+.ticks li::before{content:"";position:absolute;left:0;top:.5em;width:14px;height:8px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
+.note{border-left:3px solid var(--gold);background:var(--surface);padding:16px 18px;border-radius:0 10px 10px 0;font-size:14.5px;color:var(--muted)}
+.note strong{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px}
+.svc .actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:900px){.svc{grid-template-columns:1fr;gap:16px}.svc-tag{grid-auto-flow:column;justify-content:start;align-items:center;gap:12px}.svc-tag b{font-size:32px}.svc-cols{grid-template-columns:1fr}}
+
+/* XRover band */
+.xr{background:radial-gradient(900px 480px at 10% 0%,rgba(30,110,255,.12),transparent 60%),var(--navy);color:var(--on-navy)}
+.xr .lead{color:var(--on-navy-muted)}
+.xr-head{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:end;margin-bottom:56px}
+.xr-title{font-size:clamp(38px,5vw,60px);font-weight:700;letter-spacing:-.02em}
+.xr-title span{color:var(--gold)}
+.xr-sub{font-family:var(--f-mono);font-size:13px;letter-spacing:.08em;color:var(--on-navy-muted);margin-top:10px;text-transform:uppercase}
+.xr-quote{border-left:2px solid var(--gold);padding-left:20px;font-family:var(--f-display);font-size:22px;line-height:1.4;font-weight:500}
+.xr-quote small{display:block;font-family:var(--f-body);font-size:15px;color:var(--on-navy-muted);font-weight:400;margin-top:10px;line-height:1.6}
+.concepts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--navy-line);border:1px solid var(--navy-line);border-radius:18px;overflow:hidden}
+.concept{background:var(--navy-2);padding:28px 26px;display:grid;gap:10px;align-content:start}
+.concept .ci{width:42px;height:42px;border-radius:10px;border:1px solid var(--navy-line);color:var(--gold);display:grid;place-items:center}
+.concept .ci svg{width:22px;height:22px}
+.concept h4{font-size:19px;font-weight:600}
+.concept p{color:var(--on-navy-muted);font-size:15px}
+@media (max-width:960px){.xr-head{grid-template-columns:1fr;gap:28px}.concepts{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.concepts{grid-template-columns:1fr}}
+.xr-lower{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.xr-box{border:1px solid var(--navy-line);border-radius:18px;padding:28px;background:rgba(255,255,255,.02)}
+.xr-box h3{font-size:21px;font-weight:600;margin-bottom:16px}
+.xr-box .ticks li{color:var(--on-navy)}
+.ver{display:grid;gap:10px}
+.ver-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--navy-line);border-radius:10px;flex-wrap:wrap}
+.ver-row b{font-family:var(--f-display);font-weight:600;font-size:16.5px}
+.ver-row span{font-family:var(--f-mono);font-size:12px;color:var(--on-navy-muted)}
+.ver-row.cur{border-color:var(--gold)}
+.ver-row.cur span{color:var(--gold)}
+.modes{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.modes span{font-size:13.5px;padding:6px 12px;border-radius:999px;background:rgba(76,143,255,.12);color:var(--gold)}
+.xr-box .fine{font-size:13.5px;color:var(--on-navy-muted);margin-top:14px}
+.promise{margin-top:24px;border-radius:18px;padding:32px;background:linear-gradient(135deg,rgba(76,143,255,.14),rgba(76,143,255,.04));border:1px solid rgba(76,143,255,.35);display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+.promise h3{font-size:24px;font-weight:700;margin-bottom:10px}
+.promise p{color:var(--on-navy-muted);max-width:70ch}
+.promise p+p{margin-top:8px}
+.promise .btns{display:flex;flex-direction:column;gap:10px;min-width:220px}
+@media (max-width:900px){.xr-lower{grid-template-columns:1fr}.promise{grid-template-columns:1fr}.promise .btns{flex-direction:row;flex-wrap:wrap;min-width:0}}
+
+/* Education */
+.paths{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.path{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;display:flex;flex-direction:column;gap:14px}
+.path .lvl{font-family:var(--f-mono);font-size:12px;color:var(--gold-ink);letter-spacing:.1em;text-transform:uppercase}
+.path h3{font-size:21px;font-weight:600}
+.path ul{margin:0;padding:0;list-style:none;display:grid;gap:9px;font-size:15px;color:var(--muted)}
+.path li{padding-left:16px;position:relative}
+.path li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.path.x{background:var(--navy);border-color:var(--navy-line);color:var(--on-navy)}
+.path.x ul{color:var(--on-navy-muted)}
+.path.x .lvl{color:var(--gold)}
+.edu-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;margin-top:32px;padding-top:28px;border-top:1px solid var(--line)}
+.edu-foot p{color:var(--muted);max-width:70ch;font-size:15px}
+@media (max-width:1040px){.paths{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.paths{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-family:var(--f-display);font-size:19px;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .2s ease,background .2s}
+.faq summary .pm svg{width:14px;height:14px}
+.faq details[open] .pm{transform:rotate(45deg);background:var(--gold-soft);border-color:transparent}
+.faq details p{padding:0 48px 22px 0;color:var(--muted)}
+@media (max-width:900px){.faq-wrap{grid-template-columns:1fr;gap:28px}.faq details p{padding-right:0}}
+
+/* Contact */
+.contact-band{background:var(--surface);border-block:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.depts{display:grid;gap:14px;margin-top:32px}
+.dept{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.dept .ico{width:44px;height:44px;border-radius:10px;background:var(--gold-soft);color:var(--gold-ink);display:grid;place-items:center}
+.dept .ico svg{width:22px;height:22px}
+.dept h4{font-size:17px;font-weight:600}
+.dept p{font-size:14.5px;color:var(--muted)}
+.info{margin-top:28px;display:grid;gap:0;border-top:1px solid var(--line)}
+.info div{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.info dt{color:var(--muted)}
+.info dd{margin:0;font-weight:500}
+.ph{display:inline-block;font-family:var(--f-mono);font-size:12.5px;font-weight:400;color:var(--gold-ink);border:1px dashed var(--gold);border-radius:6px;padding:2px 8px}
+@media (max-width:480px){.info div{grid-template-columns:1fr;gap:2px}}
+.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:32px;display:grid;gap:16px}
+.form h3{font-size:24px;font-weight:700}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-size:13.5px;font-weight:600}
+.field input,.field select,.field textarea{font:inherit;font-size:15.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.form .warn{display:flex;gap:10px;font-size:13.5px;color:var(--muted);background:var(--surface-2);padding:12px 14px;border-radius:10px}
+.form .warn svg{flex:none;width:18px;height:18px;color:var(--down);margin-top:2px}
+.form .btn{justify-self:start}
+.form-status{font-size:14.5px;color:var(--up);font-weight:500}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+@media (max-width:520px){.form{padding:22px}.form .row{grid-template-columns:1fr}}
+
+/* Legal */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:28px}
+.tab{font:600 15px var(--f-body);background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:12px 14px;cursor:pointer;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+.panel{max-width:78ch;display:grid;gap:14px;color:var(--muted);font-size:15.5px}
+.panel h4{color:var(--ink);font-size:18px;font-weight:600;margin-top:10px}
+.panel strong{color:var(--ink)}
+.panel .ticks li{color:var(--muted)}
+.callout{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--down);padding:14px 16px;border-radius:0 10px 10px 0;color:var(--ink);font-weight:600}
+
+/* Footer */
+.foot{background:var(--navy);color:var(--on-navy-muted);font-size:14.5px}
+.foot-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;padding-block:64px 40px}
+
+.foot h5{font:600 13px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-navy);margin:0 0 14px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--gold)}
+.foot-disc{border-top:1px solid var(--navy-line);padding-block:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px;font-size:13.5px}
+.foot-disc strong{color:var(--on-navy)}
+.foot-bottom{border-top:1px solid var(--navy-line);padding-block:20px 28px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px}
+@media (max-width:900px){.foot-top{grid-template-columns:1fr 1fr}.foot-top>div:first-child{grid-column:1/-1}.foot-disc{grid-template-columns:1fr}}
+@media (max-width:520px){.foot-top{grid-template-columns:1fr}.section{padding-block:68px}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5" stroke-linecap="round"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18h.01"/></symbol>
+  <symbol id="i-account" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16c.6-1.6 1.8-2.4 3.2-2.4s2.6.8 3.2 2.4M14.5 10h4M14.5 13.5h3"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5C4.7 20 4 19.3 4 18.5v-13zM20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5c.8 0 1.5-.7 1.5-1.5v-13z"/></symbol>
+  <symbol id="i-candle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 3v4M6 15v6M12 6v3M12 17v4M18 2v6M18 14v4"/><rect x="4" y="7" width="4" height="8" rx="1"/><rect x="10" y="9" width="4" height="8" rx="1"/><rect x="16" y="8" width="4" height="6" rx="1"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M12 1.5v4M12 18.5v4M1.5 12h4M18.5 12h4"/></symbol>
+  <symbol id="i-zones" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7c3-2 6 2 9 0s6-2 9 0M3 17c3-2 6 2 9 0s6-2 9 0"/><path d="M3 12h18" stroke-dasharray="2 3"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+  <symbol id="i-news" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="15" height="16" rx="2"/><path d="M18 8h2a1 1 0 011 1v9a2 2 0 01-2 2M7 8h7M7 12h7M7 16h4"/></symbol>
+  <symbol id="i-support" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0116 0v1"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19c0 1.5-1.5 2-4 2h-2"/></symbol>
+</svg>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="logo" href="#top" aria-label="XDemat home"><img class="logo-img" src="assets/xdemat-logo.webp" alt="XDemat — Find Your Edge" width="153" height="74"></a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#xrover">XRover 5</a>
+      <a href="#education">Education</a>
+      <a href="#faq">FAQs</a>
+      <a href="#contact">Contact</a>
+      <a href="#legal">Legal</a>
+    </nav>
+    <a class="btn btn-gold head-cta" href="#account">Open an Account</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero on-navy">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Stock market services · Education · Trading technology</span>
+      <h1 style="margin-top:18px">Trade with Knowledge.<br><span>Analyse with Confidence.</span></h1>
+      <p class="tag">Your journey towards smarter market participation starts here.</p>
+      <p class="sub">XDemat brings together stock market account-opening assistance, trading education and innovative trading tools designed to support better-informed market decisions.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="#account">Open an Account <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#xrover">Explore XRover 5</a>
+      </div>
+      <div class="hero-meta">
+        <span><i></i>Account opening via Angel One</span>
+        <span><i></i>Learning-first approach</span>
+        <span><i></i>Risk-aware tools</span>
+      </div>
+    </div>
+    <div class="chart-card" aria-label="Illustrative candlestick chart with a market zone, entry, stop-loss and target levels">
+      <div class="chart-top">
+        <strong>XRover 5 · Intelligent Candle System</strong>
+        <span class="pill"><i></i>Illustration</span>
+      </div>
+      <svg id="chart" viewBox="0 0 540 320" role="img" aria-label="Illustrative chart"></svg>
+      <div class="chart-legend">
+        <span><b style="background:var(--gold)"></b>Adaptive zone</span>
+        <span><b style="background:#EEF2F8"></b>Entry</span>
+        <span><b style="background:var(--down)"></b>Stop-loss</span>
+        <span><b style="background:var(--up)"></b>Profit target</span>
+      </div>
+      <p class="chart-note">Illustrative example only. Not a live signal or a record of past performance.</p>
+    </div>
+  </div>
+</section>
+
+<div class="risk-strip">
+  <div class="wrap"><svg><use href="#i-alert"/></svg><p><strong style="color:var(--ink)">Risk disclosure:</strong> Trading involves risk. XRover 5 is a trading decision-support tool and does not guarantee profits or prevent losses. Past performance is not indicative of future results.</p></div>
+</div>
+
+<!-- PILLARS -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What we do</span>
+      <h2 class="h2">One platform. Three ways to move forward.</h2>
+    </div>
+    <div class="pillars">
+      <article class="pillar">
+        <div class="ico"><svg><use href="#i-account"/></svg></div>
+        <h3>Stock Market Account Opening</h3>
+        <p>Get assistance with opening an eligible trading and Demat account through our relationship with Angel One, subject to the broker's requirements and KYC verification.</p>
+        <a class="link-arrow" href="#account">Open Your Account <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="pillar">
+        <div class="ico"><svg><use href="#i-book"/></svg></div>
+        <h3>Stock Market Education</h3>
+        <p>Build your understanding of market fundamentals, technical analysis, trading strategies, risk management and disciplined decision-making.</p>
+        <a class="link-arrow" href="#education">Start Learning <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="pillar feature">
+        <div class="ico"><svg><use href="#i-candle"/></svg></div>
+        <h3>XRover 5 Intelligent Candle System</h3>
+        <p>Explore XDemat's trading technology, designed to help traders analyse market conditions and evaluate potential trading opportunities.</p>
+        <a class="link-arrow" href="#xrover">Discover XRover 5 <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section" style="padding-top:0">
+  <div class="wrap why">
+    <div class="sec-head" style="margin-bottom:0">
+      <span class="eyebrow">Why XDemat</span>
+      <h2 class="h2">Why choose XDemat?</h2>
+      <p class="lead">Account-opening assistance, education and trading technology under one brand, built around understanding the market before risking capital.</p>
+    </div>
+    <ul class="why-list">
+      <li><span class="chk"><svg><use href="#i-check"/></svg></span><div><h4>A learning-first approach</h4><p>We encourage traders to understand the market before risking capital.</p></div></li>
+      <li><span class="chk"><svg><use href="#i-check"/></svg></span><div><h4>Technology-driven analysis</h4><p>Explore tools designed to support structured trading decisions.</p></div></li>
+      <li><span class="chk"><svg><use href="#i-check"/></svg></span><div><h4>Support for different experience levels</h4><p>Educational resources for beginners and experienced traders.</p></div></li>
+      <li><span class="chk"><svg><use href="#i-check"/></svg></span><div><h4>A focus on risk awareness</h4><p>Understand the importance of stop-losses, position sizing and trading discipline.</p></div></li>
+      <li><span class="chk"><svg><use href="#i-check"/></svg></span><div><h4>An integrated experience</h4><p>Account-opening assistance, education and trading technology under one brand.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about-band" id="about">
+  <div class="wrap">
+    <div class="about-top">
+      <div>
+        <div class="sec-head" style="margin-bottom:24px">
+          <span class="eyebrow">About XDemat</span>
+          <h2 class="h2">Empowering Traders Through Knowledge and Technology</h2>
+        </div>
+        <div class="body">
+          <p>XDemat is a stock market services and trading technology brand focused on helping individuals access market-related services, develop their trading knowledge and explore innovative analytical tools.</p>
+          <p>We believe that successful participation in financial markets begins with education, informed decision-making and a clear understanding of risk.</p>
+          <p>Our services bring together three core areas: stock market account-opening assistance through our relationship with Angel One, stock market education for different experience levels, and the development of trading tools such as XRover 5.</p>
+        </div>
+      </div>
+      <div class="mv">
+        <div class="mv-card"><div class="k">Our mission</div><p>To make market participation more informed and accessible by combining education, responsible service and practical trading technology.</p></div>
+        <div class="mv-card"><div class="k">Our vision</div><p>To build a trusted brand that empowers individuals to improve their market knowledge, develop disciplined trading habits and use technology responsibly.</p></div>
+      </div>
+    </div>
+
+    <h3 style="font-size:26px;font-weight:700;margin-top:72px">Our approach</h3>
+    <div class="approach" style="margin-top:28px">
+      <div class="ap"><div class="bar"></div><h4>Education First</h4><p>We believe traders should understand market behaviour, trading risks and money management before making financial decisions.</p></div>
+      <div class="ap"><div class="bar"></div><h4>Technology with Purpose</h4><p>We develop and offer tools intended to help traders analyse market conditions and organise their trading decisions.</p></div>
+      <div class="ap"><div class="bar"></div><h4>Responsible Market Participation</h4><p>We encourage users to evaluate risks, follow a trading plan and avoid decisions based solely on excitement, speculation or past performance.</p></div>
+      <div class="ap"><div class="bar"></div><h4>Customer Support</h4><p>We aim to provide clear information and practical assistance to customers using our available services.</p></div>
+    </div>
+
+    <div class="commit">
+      <svg><use href="#i-shield"/></svg>
+      <div>
+        <h3 style="font-size:20px;font-weight:600;margin-bottom:8px">Our commitment</h3>
+        <p>At XDemat, our goal is to make market-related services and trading technology easier to understand and use. We aim to support our customers with educational resources, appropriate service assistance and tools that encourage a structured approach to market analysis.</p>
+        <p style="margin-top:10px"><strong>Trading involves risk, and no technology can guarantee profits.</strong> We encourage every trader to make independent, informed decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Our services</span>
+      <h2 class="h2">Everything you need to get started, learn and analyse</h2>
+    </div>
+
+    <div class="svc" id="account">
+      <div class="svc-tag"><b>A</b>Account opening</div>
+      <div>
+        <h3>Start Your Stock Market Journey with XDemat</h3>
+        <p class="intro">Get assistance with opening a trading and Demat account through our authorised relationship with Angel One. Our team can guide eligible customers through the account-opening process and explain the general steps involved in completing the required documentation and KYC formalities.</p>
+        <div class="svc-cols">
+          <div>
+            <h4 style="font-size:17px;font-weight:600;margin-bottom:14px">What we offer</h4>
+            <ul class="ticks">
+              <li>Account-opening assistance.</li>
+              <li>Guidance through the application and KYC process.</li>
+              <li>Information about available brokerage services and applicable charges.</li>
+              <li>General guidance on accessing the broker's trading platform.</li>
+              <li>Assistance in understanding the basic steps involved in getting started.</li>
+            </ul>
+          </div>
+          <div style="display:grid;gap:14px">
+            <div class="note">Account approval, trading access, charges and applicable terms are determined by Angel One and relevant regulatory requirements.</div>
+            <div class="note"><strong>Important:</strong> Please review applicable terms, charges and risks before opening an account. Account opening does not guarantee investment or trading success.</div>
+          </div>
+        </div>
+        <div class="actions"><a class="btn btn-gold" href="#contact" data-subject="account">Open Your Account <svg><use href="#i-arrow"/></svg></a></div>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-tag"><b>B</b>Education</div>
+      <div>
+        <h3>Learn the Market. Build Your Skills.</h3>
+        <p class="intro">Our stock market education initiatives are designed to help beginners establish a strong foundation and enable existing traders to deepen their understanding of market behaviour.</p>
+        <h4 style="font-size:17px;font-weight:600;margin-bottom:14px">Topics you can explore</h4>
+        <div class="chips">
+          <span>Stock markets &amp; financial instruments</span>
+          <span>Candlestick charts &amp; price movements</span>
+          <span>Technical analysis &amp; indicators</span>
+          <span>Support, resistance &amp; market structure</span>
+          <span>Trading setups &amp; strategy development</span>
+          <span>Stop-loss planning &amp; risk management</span>
+          <span>Position sizing &amp; trading psychology</span>
+          <span>Backtesting, evaluation &amp; journals</span>
+          <span>Trading tools, including XRover 5</span>
+        </div>
+        <p style="color:var(--muted);font-size:14.5px;margin-top:18px">Our educational content aims to improve knowledge and analytical skills. Educational material is not a substitute for personalised financial advice.</p>
+        <div class="actions"><a class="btn btn-line" href="#education">Explore Learning Resources <svg><use href="#i-arrow"/></svg></a></div>
+      </div>
+    </div>
+
+    <div class="svc">
+      <div class="svc-tag"><b>C</b>Tools &amp; technology</div>
+      <div>
+        <h3>Trading Technology Designed to Support Better Decisions</h3>
+        <p class="intro">XDemat develops and offers trading tools intended to help users analyse financial markets more systematically. Our tools may include chart-based analytical systems, market-analysis features and trading decision-support technology.</p>
+        <div class="svc-cols">
+          <div>
+            <h4 style="font-size:17px;font-weight:600;margin-bottom:10px">Featured product: XRover 5</h4>
+            <p style="color:var(--muted)">XRover 5 is our Intelligent Candle System, developed to support traders in interpreting price action and evaluating potential trading opportunities. Explore its features, versions and usage requirements on the XRover 5 section below.</p>
+          </div>
+          <div class="note">Trading tools provide analytical assistance, not certainty. Users remain responsible for validating signals, assessing risk and making their own trading decisions.</div>
+        </div>
+        <div class="actions"><a class="btn btn-line" href="#xrover">Explore Our Trading Tools <svg><use href="#i-arrow"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- XROVER 5 -->
+<section class="section xr on-navy" id="xrover">
+  <div class="wrap">
+    <div class="xr-head">
+      <div>
+        <span class="eyebrow">A product by XDemat</span>
+        <h2 class="xr-title" style="margin-top:16px">XRover 5 <span>Intelligent Candle System</span></h2>
+        <p class="xr-sub">A data-informed approach to chart analysis and trading decisions</p>
+        <p class="lead" style="margin-top:22px">XRover 5 is a proprietary trading analysis product developed by XDemat. It is designed to help traders interpret market conditions and evaluate potential entries, market zones and exit plans through a structured, candle-based analytical framework.</p>
+      </div>
+      <div class="xr-quote">Not just watching candles. Understanding the market context.
+        <small>Traditional charts display price movements. XRover 5 adds its own analytical framework to help users assess market conditions and plan their trades.</small>
+      </div>
+    </div>
+
+    <div class="concepts">
+      <div class="concept"><div class="ci"><svg><use href="#i-target"/></svg></div><h4>Data-Confirmed Entry Analysis</h4><p>Uses data-confirmation concepts to help traders evaluate potential entry opportunities. Actual signals depend on the product version, configuration and available market data.</p></div>
+      <div class="concept"><div class="ci"><svg><use href="#i-zones"/></svg></div><h4>Adaptive Market Zones</h4><p>Adaptive-zone concepts designed to help traders assess relevant price areas as market conditions evolve.</p></div>
+      <div class="concept"><div class="ci"><svg><use href="#i-shield"/></svg></div><h4>Structured Stop-Loss Planning</h4><p>Features that may help users identify potential stop-loss levels or risk boundaries. Actual risk depends on settings, market movement and execution conditions.</p></div>
+      <div class="concept"><div class="ci"><svg><use href="#i-flag"/></svg></div><h4>Market-Responsive Profit Targets</h4><p>Profit-target concepts intended to support trade planning. Targets are not guarantees that a market will reach a particular price.</p></div>
+      <div class="concept"><div class="ci"><svg><use href="#i-sliders"/></svg></div><h4>Different Trading Modes</h4><p>Where supported by the selected version, modes let users configure the system for different trading approaches. Understand the settings and risks before trading.</p></div>
+      <div class="concept"><div class="ci"><svg><use href="#i-news"/></svg></div><h4>Market Data &amp; News-Related Analysis</h4><p>Certain versions or configurations may incorporate market-data confirmation or news-related inputs. Availability depends on the relevant release.</p></div>
+    </div>
+
+    <div class="xr-lower">
+      <div class="xr-box">
+        <h3>Who is XRover 5 for?</h3>
+        <ul class="ticks">
+          <li>Beginners who want to learn a structured approach to chart analysis.</li>
+          <li>Traders who want analytical support when evaluating potential entries.</li>
+          <li>Experienced traders who want to assess an additional market-analysis framework.</li>
+          <li>Users who want to study trading setups and review system performance.</li>
+        </ul>
+      </div>
+      <div class="xr-box">
+        <h3>Available versions</h3>
+        <div class="ver">
+          <div class="ver-row"><b>XRover 5 Smart</b><span>Version</span></div>
+          <div class="ver-row"><b>XRover 5 Pro</b><span>Version</span></div>
+          <div class="ver-row cur"><b>XRover 5 Pro V.2C</b><span>Current release</span></div>
+        </div>
+        <div class="modes"><span>Smart Mode</span><span>Professional Mode</span></div>
+        <p class="fine">Feature differences, supported platforms and subscription plans are shared on request. Contact the XRover 5 team for current details.</p>
+      </div>
+    </div>
+
+    <div class="promise">
+      <div>
+        <h3>A tool for analysis, not a promise of profit</h3>
+        <p>XRover 5 is designed to assist trading decisions, not eliminate trading risk. Its output may differ according to market data, broker feeds, settings, execution conditions and the user's decisions.</p>
+        <p>Past performance does not guarantee future results. Understand the system, test it appropriately and apply your own risk-management rules before using it with real funds.</p>
+      </div>
+      <div class="btns">
+        <a class="btn btn-gold" href="#contact" data-subject="xrover">Request an XRover 5 Demo</a>
+        <a class="btn btn-ghost" href="#contact" data-subject="xrover">View Available Plans</a>
+        <a class="btn btn-ghost" href="#contact" data-subject="xrover">Contact the XRover 5 Team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Stock market education by XDemat</span>
+      <h2 class="h2">Learn at Your Own Pace</h2>
+      <p class="lead">Whether you are taking your first steps in the stock market or refining an existing trading approach, XDemat aims to make market concepts easier to understand.</p>
+    </div>
+    <div class="paths">
+      <article class="path">
+        <span class="lvl">Learning path 1</span><h3>Beginner</h3>
+        <ul><li>How stock markets work</li><li>Demat accounts and trading accounts</li><li>Order types and basic chart reading</li><li>Introduction to candlesticks</li><li>Understanding risk, capital and leverage</li><li>Common trading mistakes</li></ul>
+      </article>
+      <article class="path">
+        <span class="lvl">Learning path 2</span><h3>Technical Analysis</h3>
+        <ul><li>Price action and chart patterns</li><li>Support and resistance</li><li>Trend analysis and market structure</li><li>Technical indicators and their limitations</li><li>Strategy development and backtesting</li></ul>
+      </article>
+      <article class="path">
+        <span class="lvl">Learning path 3</span><h3>Trading Discipline</h3>
+        <ul><li>Trading plans and checklists</li><li>Stop-loss and position sizing</li><li>Trading psychology</li><li>Journaling and performance review</li><li>Understanding drawdowns and consecutive losses</li></ul>
+      </article>
+      <article class="path x">
+        <span class="lvl">Learning path 4</span><h3>XRover 5 Training</h3>
+        <ul><li>Introduction to the system</li><li>Understanding its interface and settings</li><li>Interpreting available analytical outputs</li><li>Understanding supported trading modes</li><li>Risk management when using XRover 5</li><li>Reviewing historical performance and practical examples</li></ul>
+      </article>
+    </div>
+    <div class="edu-foot">
+      <p>Our learning resources are educational in nature. Trading outcomes are uncertain and no strategy works in every market condition.</p>
+      <a class="btn btn-gold" href="#contact" data-subject="education">Enquire About Training <svg><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="padding-top:0">
+  <div class="wrap faq-wrap">
+    <div class="sec-head" style="margin-bottom:0;align-content:start">
+      <span class="eyebrow">FAQs</span>
+      <h2 class="h2">Frequently asked questions</h2>
+      <p class="lead">Can't find your answer? Our team will direct your enquiry to the right department.</p>
+      <div><a class="link-arrow" href="#contact">Ask a question <svg width="16" height="16"><use href="#i-arrow"/></svg></a></div>
+    </div>
+    <div class="faq">
+      <details open><summary>What is XDemat?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>XDemat is a stock market services and trading technology brand offering account-opening assistance through its brokerage relationship, stock market education and tools such as XRover 5.</p></details>
+      <details><summary>Is XDemat associated with Angel One?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>XDemat provides account-opening assistance through its relationship with Angel One, subject to the applicable authorisation and regulatory requirements.</p></details>
+      <details><summary>What is XRover 5?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>XRover 5 is an Intelligent Candle System developed by XDemat to support chart analysis and trading decisions. Available functionality depends on the version and configuration.</p></details>
+      <details><summary>Does XRover 5 guarantee profits?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>No. XRover 5 does not guarantee profits or prevent losses. Market conditions, data, execution and user decisions affect trading outcomes.</p></details>
+      <details><summary>Can beginners use XRover 5?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>Beginners can explore the system as part of their learning process, but should first understand basic trading concepts, product settings and risk management.</p></details>
+      <details><summary>Does XDemat provide stock market training?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>XDemat offers or plans to offer educational resources and training covering market fundamentals, technical analysis, trading discipline and its trading tools. Check the current training catalogue for available courses.</p></details>
+      <details><summary>How do I open a trading and Demat account?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>Use the account-opening link or contact XDemat for assistance. Account opening is subject to the broker's application, eligibility and KYC requirements.</p></details>
+      <details><summary>Are historical results an indication of future performance?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>No. Historical, simulated or backtested results may not reflect future performance or actual execution. Trading may result in partial or total loss of the capital at risk.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-band" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Connect with XDemat</span>
+        <h2 class="h2">We're Here to Help</h2>
+        <p class="lead">Have questions about opening an account, learning about the stock market or exploring XRover 5? Contact our team and we will direct your enquiry to the appropriate department.</p>
+      </div>
+      <div class="depts">
+        <div class="dept"><div class="ico"><svg><use href="#i-account"/></svg></div><div><h4>Account opening</h4><p>For assistance with the account-opening process and required documentation.</p></div></div>
+        <div class="dept"><div class="ico"><svg><use href="#i-book"/></svg></div><div><h4>Education and training</h4><p>For information about educational resources, training programmes and learning opportunities.</p></div></div>
+        <div class="dept"><div class="ico"><svg><use href="#i-support"/></svg></div><div><h4>XRover 5 product support</h4><p>For product enquiries, version information, setup guidance, subscriptions and technical support.</p></div></div>
+      </div>
+      <dl class="info">
+        <div><dt>Company</dt><dd>XDemat</dd></div>
+        <div><dt>Email</dt><dd><span class="ph">Official support email</span></dd></div>
+        <div><dt>Phone / WhatsApp</dt><dd><span class="ph">Official business number</span></dd></div>
+        <div><dt>Office address</dt><dd><span class="ph">Registered / business address</span></dd></div>
+        <div><dt>Business hours</dt><dd><span class="ph">Working days and hours</span></dd></div>
+      </dl>
+    </div>
+
+    <form class="form" id="enquiry" novalidate>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+      <h3>Send us an enquiry</h3>
+      <p style="color:var(--muted);font-size:15px">Share your name, contact details and the subject of your enquiry.</p>
+      <div class="row">
+        <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-phone">Phone / WhatsApp</label><input id="f-phone" name="mobile" type="tel" autocomplete="tel" required></div>
+      </div>
+      <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+      <div class="field"><label for="f-subject">Enquiry about</label>
+        <select id="f-subject" name="subject">
+          <option value="account">Account opening</option>
+          <option value="education">Education and training</option>
+          <option value="xrover">XRover 5 product support / demo</option>
+          <option value="other">Something else</option>
+        </select>
+      </div>
+      <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" placeholder="How can we help?"></textarea></div>
+      <div class="warn"><svg><use href="#i-alert"/></svg><span>Please don't share passwords, OTPs, trading-account credentials or other confidential financial information.</span></div>
+      <button class="btn btn-gold" type="submit">Submit Enquiry <svg><use href="#i-arrow"/></svg></button>
+      <p class="form-status" id="formStatus" role="status" hidden></p>
+    </form>
+  </div>
+</section>
+
+<!-- LEGAL -->
+<section class="section" id="legal">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Legal &amp; disclosures</span>
+      <h2 class="h2">Please read before using our services</h2>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Legal documents">
+      <button class="tab" role="tab" id="t-disc" aria-controls="p-disc" aria-selected="true">Disclaimer</button>
+      <button class="tab" role="tab" id="t-risk" aria-controls="p-risk" aria-selected="false">Risk Warning</button>
+      <button class="tab" role="tab" id="t-priv" aria-controls="p-priv" aria-selected="false">Privacy Policy</button>
+      <button class="tab" role="tab" id="t-terms" aria-controls="p-terms" aria-selected="false">Terms of Use</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-disc" aria-labelledby="t-disc">
+      <p>The information provided on this website is for general informational and educational purposes only.</p>
+      <p>XDemat offers account-opening assistance through its stated brokerage relationship, educational content and trading analysis tools, including XRover 5.</p>
+      <p>Nothing on this website should be interpreted as a guarantee of trading profits, a promise of investment returns or a guarantee against losses.</p>
+      <p>XRover 5 is a trading decision-support tool. Its outputs and historical performance, where displayed, do not guarantee future results. Actual outcomes may vary due to market conditions, data feeds, platform settings, execution, brokerage charges, slippage and other factors.</p>
+      <p>Users are responsible for their own trading decisions and should assess their financial circumstances, knowledge and risk tolerance before trading.</p>
+      <p>Unless separately authorised and appropriately disclosed, XDemat's educational materials and trading tools should not be understood as personalised investment advice or a recommendation to buy or sell a particular security.</p>
+      <p>Please review all applicable terms, risks, charges and disclosures before using any service or product.</p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-risk" aria-labelledby="t-risk" hidden>
+      <p>Trading in financial markets involves risk and may not be suitable for everyone. Prices can move rapidly, and losses may exceed expectations depending on the instrument, leverage and applicable product terms.</p>
+      <p>No indicator, algorithm, analytical system or trading strategy can predict market movements with certainty.</p>
+      <p>XRover 5 is designed to assist market analysis and trading decisions. It does not guarantee the accuracy of every signal, the execution of every planned trade or the achievement of any profit target.</p>
+      <p>Past performance, screenshots, backtests and illustrative examples should not be treated as reliable guarantees of future results.</p>
+      <p>Users should understand the product, verify its settings, evaluate applicable costs and establish appropriate risk-management measures before trading with real funds.</p>
+      <p class="callout">Never trade with money you cannot afford to lose.</p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-priv" aria-labelledby="t-priv" hidden>
+      <p>XDemat respects the privacy of visitors and customers. This policy explains how personal information may be collected and used when you visit our website, submit an enquiry, request account-opening assistance or enquire about our products.</p>
+      <h4>Information we may collect</h4>
+      <ul class="ticks"><li>Name, email address and phone number.</li><li>Enquiry details and communication history.</li><li>Information submitted through account-opening assistance forms.</li><li>Website usage and technical information, where applicable.</li></ul>
+      <h4>How we use information</h4>
+      <p>We may use information to respond to enquiries, provide requested services, coordinate account-opening assistance, deliver product support, communicate service updates and improve our website.</p>
+      <p>Information required for account opening may be handled by Angel One or other relevant service providers in accordance with their applicable privacy notices and legal obligations.</p>
+      <h4>Sharing of information</h4>
+      <p>We do not intend to sell personal information. Information may be shared with relevant service providers or authorised parties where necessary to deliver requested services, comply with applicable law or act with the user's consent.</p>
+      <h4>Data security and retention</h4>
+      <p>We take reasonable steps to protect information and retain it only as needed for legitimate business, contractual and legal purposes.</p>
+      <h4>Your choices</h4>
+      <p>You may contact us to ask about your personal information, request corrections where applicable or raise a privacy concern. Contact: <span class="ph">Privacy contact email</span></p>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-terms" aria-labelledby="t-terms" hidden>
+      <p>By accessing this website, you agree to use its content and services lawfully and in accordance with these terms.</p>
+      <p>The website provides information about XDemat, its services, educational resources and trading tools.</p>
+      <p>You must not misuse the website, attempt unauthorised access, interfere with its operation or reproduce protected content without appropriate permission.</p>
+      <p>Descriptions of products, features, prices, services and availability may be updated from time to time. Product access is subject to the applicable subscription terms and eligibility requirements.</p>
+      <p>All intellectual property rights in XDemat's original website content, branding and proprietary product materials remain with their respective owners.</p>
+      <p>Nothing on this website overrides the terms of Angel One, applicable broker documentation or relevant legal and regulatory requirements.</p>
+      <p>To the extent permitted by law, XDemat disclaims liability for trading losses arising from market movements or reliance on general educational information or analytical tools. Nothing in these terms excludes liability that cannot lawfully be excluded.</p>
+      <p>Contact: <span class="ph">Official contact details</span></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-top">
+    <div>
+      <a class="logo-card" href="#top" aria-label="XDemat home"><img src="assets/xdemat-logo.webp" alt="XDemat — Find Your Edge" width="132" height="64"></a>
+      <p style="color:var(--on-navy);font-weight:500">Stock Market Services, Education &amp; Trading Technology</p>
+      <p style="margin-top:8px;max-width:44ch">Helping traders develop market knowledge and explore analytical tools designed to support informed trading decisions.</p>
+    </div>
+    <div>
+      <h5>Quick links</h5>
+      <ul><li><a href="#about">About Us</a></li><li><a href="#account">Account Opening</a></li><li><a href="#education">Education</a></li><li><a href="#xrover">XRover 5</a></li><li><a href="#contact">Contact Us</a></li></ul>
+    </div>
+    <div>
+      <h5>Legal</h5>
+      <ul><li><a href="#legal" data-tab="t-terms">Terms of Use</a></li><li><a href="#legal" data-tab="t-priv">Privacy Policy</a></li><li><a href="#legal" data-tab="t-risk">Risk Disclosure</a></li><li><a href="#legal" data-tab="t-disc">Disclaimer</a></li><li><a href="#contact">Grievance / Support Information</a></li></ul>
+    </div>
+  </div>
+  <div class="wrap foot-disc">
+    <p><strong>Important Risk Disclosure:</strong> Trading involves risk. XRover 5 is a trading decision-support tool and does not guarantee profits or prevent losses. Past performance is not indicative of future results.</p>
+    <p><strong>Brokerage Relationship:</strong> Account-opening assistance is provided through our stated relationship with Angel One, subject to the applicable authorisation, eligibility and broker terms.</p>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 XDemat. All rights reserved.</span>
+    <span><span class="ph" style="color:var(--gold);border-color:var(--gold)">Legal business name · Authorised Person details · Registration info</span></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Mobile menu
+  var btn=document.getElementById('menuBtn'), nav=document.getElementById('nav');
+  btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+  nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');btn.setAttribute('aria-expanded','false')}});
+
+  // Legal tabs
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function select(id){tabs.forEach(function(t){var on=t.id===id;t.setAttribute('aria-selected',on);document.getElementById(t.getAttribute('aria-controls')).hidden=!on})}
+  tabs.forEach(function(t){t.addEventListener('click',function(){select(t.id)})});
+  document.querySelectorAll('[data-tab]').forEach(function(a){a.addEventListener('click',function(){select(a.getAttribute('data-tab'))})});
+
+  // CTAs preselect enquiry subject
+  var sel=document.getElementById('f-subject');
+  document.querySelectorAll('[data-subject]').forEach(function(a){a.addEventListener('click',function(){sel.value=a.getAttribute('data-subject')})});
+
+  // Enquiry form: posts to send.php, which creates a lead in the CRM
+  var form=document.getElementById('enquiry'), status=document.getElementById('formStatus');
+  function say(msg,ok){status.style.color=ok?'var(--up)':'var(--down)';status.textContent=msg;status.hidden=false}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=document.getElementById('f-name'), p=document.getElementById('f-phone');
+    if(!n.value.trim()||p.value.replace(/\D/g,'').length<10){say('Please add your name and a 10-digit mobile number so our team can reach you.',false);(n.value.trim()?p:n).focus();return}
+    var b=form.querySelector('button[type=submit]'); b.disabled=true; say('Sending…',true);
+    fetch('send.php',{method:'POST',body:new FormData(form)})
+      .then(function(r){return r.json().catch(function(){return {ok:false,preview:true}})})
+      .then(function(d){
+        if(d.ok){say('Thank you, '+n.value.trim().split(' ')[0]+'. Our team will contact you shortly.',true);form.reset()}
+        else if(d.preview){say('Enquiries are delivered once the site is live on its own domain.',false)}
+        else{say(d.error||'Your message could not be sent. Please try again.',false)}
+      })
+      .catch(function(){say('Your message could not be sent. Please check your connection and try again.',false)})
+      .then(function(){b.disabled=false});
+  });
+
+  // Illustrative candle chart (seeded, deterministic)
+  var svg=document.getElementById('chart'), NS='http://www.w3.org/2000/svg';
+  var seed=7; function rnd(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}
+  var N=34, closes=[], o=[], h=[], l=[], c=[], price=100;
+  for(var i=0;i<N;i++){
+    var drift = i<14 ? -0.55 : (i<20 ? 0.05 : 0.75);
+    var open=price, close=open+drift+(rnd()-0.5)*2.6;
+    var hi=Math.max(open,close)+rnd()*1.3, lo=Math.min(open,close)-rnd()*1.3;
+    o.push(open);c.push(close);h.push(hi);l.push(lo);price=close;
+  }
+  var all=h.concat(l), max=Math.max.apply(null,all)+2, min=Math.min.apply(null,all)-2;
+  var W=540,H=320,padL=8,padR=62,padT=14,padB=22, cw=(W-padL-padR)/N;
+  function y(v){return padT+(max-v)/(max-min)*(H-padT-padB)}
+  function el(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e}
+  // grid
+  for(var g=0;g<5;g++){var gy=padT+g*(H-padT-padB)/4;el('line',{x1:padL,x2:W-padR,y1:gy,y2:gy,stroke:'rgba(255,255,255,.06)'});
+    var t=el('text',{x:W-padR+8,y:gy+4,'font-size':10.5,'font-family':'JetBrains Mono, monospace',fill:'#A8B6CD'});t.textContent=(max-g*(max-min)/4).toFixed(1)}
+  // adaptive zone around the base
+  var zLo=Math.min.apply(null,l.slice(12,21)), zHi=zLo+ (max-min)*0.12;
+  var zx=padL+12*cw;
+  el('rect',{x:zx,y:y(zHi),width:(W-padR)-zx,height:y(zLo)-y(zHi),fill:'rgba(76,143,255,.13)',stroke:'rgba(76,143,255,.55)','stroke-dasharray':'4 4'});
+  // levels
+  var entryI=20, entry=c[entryI], sl=zLo-0.6, tp=entry+(entry-sl)*2;
+  if(tp>max-1)tp=max-1;
+  var ex=padL+entryI*cw+cw/2;
+  function level(v,col,label){el('line',{x1:ex,x2:W-padR,y1:y(v),y2:y(v),stroke:col,'stroke-width':1.4,'stroke-dasharray':label==='ENTRY'?'0':'5 4'});
+    var r=el('rect',{x:W-padR+2,y:y(v)-9,width:58,height:18,rx:4,fill:col});
+    var t=el('text',{x:W-padR+31,y:y(v)+4,'text-anchor':'middle','font-size':10,'font-weight':600,'font-family':'JetBrains Mono, monospace',fill:label==='ENTRY'?'#0A1A35':'#fff'});t.textContent=label}
+  var up=getComputedStyle(document.documentElement).getPropertyValue('--up').trim()||'#1E9C6A';
+  var dn=getComputedStyle(document.documentElement).getPropertyValue('--down').trim()||'#D04A40';
+  level(tp,up,'TARGET');level(sl,dn,'STOP');level(entry,'#EEF2F8','ENTRY');
+  // candles
+  for(var k=0;k<N;k++){
+    var x=padL+k*cw+cw/2, bull=c[k]>=o[k], col=bull?up:dn;
+    el('line',{x1:x,x2:x,y1:y(h[k]),y2:y(l[k]),stroke:col,'stroke-width':1.2});
+    var top=y(Math.max(o[k],c[k])), bh=Math.max(1.5,Math.abs(y(o[k])-y(c[k])));
+    el('rect',{x:x-cw*0.32,y:top,width:cw*0.64,height:bh,rx:1.2,fill:bull?col:'transparent',stroke:col,'stroke-width':1.2});
+  }
+  // entry marker
+  el('circle',{cx:ex,cy:y(entry),r:5,fill:'#5B9BFF',stroke:'#0A1A35','stroke-width':2});
+  var lab=el('text',{x:padL+13*cw,y:y(zLo)+15,'font-size':10.5,'font-family':'JetBrains Mono, monospace',fill:'#5B9BFF'});lab.textContent='ADAPTIVE ZONE';
+})();
+</script>
