@@ -1,8 +1,8 @@
 <?php
 // XDemat contact form handler. Creates a lead in the CRM (which emails a copy to the address below);
 // if the CRM is unavailable, emails the form directly.
-$TO   = 'info@xrover5.com'; // change to the XDemat support mailbox once it exists
-$FROM = 'info@xrover5.com'; // must be a real mailbox on this hosting account
+$TO   = 'info@xdemat.com';
+$FROM = 'info@xdemat.com'; // must be a real mailbox on this hosting account
 
 header('Content-Type: application/json; charset=utf-8');
 

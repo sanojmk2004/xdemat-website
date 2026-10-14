@@ -119,6 +119,19 @@ a{color:inherit}
 .risk-strip .wrap{padding-block:12px;display:flex;gap:10px;align-items:flex-start}
 .risk-strip svg{flex:none;width:18px;height:18px;color:var(--gold-ink);margin-top:2px}
 
+/* Angel One partner badge */
+.ao-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:14px;color:var(--ink)}
+.ao-badge img{height:22px;width:auto;display:block;background:#fff;border-radius:4px;padding:2px 4px}
+.ao-badge b{font-weight:700}
+.ao-badge.dark{background:rgba(255,255,255,.06);border-color:var(--navy-line);color:var(--on-navy)}
+.ap-card{margin-top:22px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.ap-card .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-ink)}
+.ap-card dl{margin:6px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14.5px}
+.ap-card dt{color:var(--muted)} .ap-card dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;word-break:break-word}
+@media (max-width:560px){.ap-card{grid-template-columns:1fr}}
+.contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.info a{text-decoration:none;color:var(--gold-ink)} .info a:hover{text-decoration:underline}
+
 /* Pillars */
 .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .pillar{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s ease,transform .2s ease}
@@ -349,8 +362,9 @@ a{color:inherit}
         <a class="btn btn-gold" href="#account">Open an Account <svg><use href="#i-arrow"/></svg></a>
         <a class="btn btn-ghost" href="#xrover">Explore XRover 5</a>
       </div>
-      <div class="hero-meta">
-        <span><i></i>Account opening via Angel One</span>
+      <div style="margin-top:30px"><span class="ao-badge dark"><img src="assets/angel-one-logo.png" alt="Angel One" onerror="this.remove()"><span>Authorised Partner of <b>Angel One</b></span></span></div>
+      <div class="hero-meta" style="margin-top:20px">
+        <span><i></i>Account opening assistance</span>
         <span><i></i>Learning-first approach</span>
         <span><i></i>Risk-aware tools</span>
       </div>
@@ -476,7 +490,7 @@ a{color:inherit}
       <div class="svc-tag"><b>A</b>Account opening</div>
       <div>
         <h3>Start Your Stock Market Journey with XDemat</h3>
-        <p class="intro">Get assistance with opening a trading and Demat account through our authorised relationship with Angel One. Our team can guide eligible customers through the account-opening process and explain the general steps involved in completing the required documentation and KYC formalities.</p>
+        <p class="intro">Get assistance with opening a trading and Demat account through XDemat, an authorised partner of Angel One. Our team can guide eligible customers through the account-opening process and explain the general steps involved in completing the required documentation and KYC formalities.</p>
         <div class="svc-cols">
           <div>
             <h4 style="font-size:17px;font-weight:600;margin-bottom:14px">What we offer</h4>
@@ -491,6 +505,12 @@ a{color:inherit}
           <div style="display:grid;gap:14px">
             <div class="note">Account approval, trading access, charges and applicable terms are determined by Angel One and relevant regulatory requirements.</div>
             <div class="note"><strong>Important:</strong> Please review applicable terms, charges and risks before opening an account. Account opening does not guarantee investment or trading success.</div>
+          </div>
+        </div>
+        <div class="ap-card">
+          <span class="ao-badge "><img src="assets/angel-one-logo.png" alt="Angel One" onerror="this.remove()"><span>Authorised Partner of <b>Angel One</b></span></span>
+          <div><div class="k">Authorised Person details</div>
+            <dl><dt>Authorised Person</dt><dd>Amrutha K A</dd><dt>License No.</dt><dd>BFIF01-G130506-00102-2026</dd></dl>
           </div>
         </div>
         <div class="actions"><a class="btn btn-gold" href="#contact" data-subject="account">Open Your Account <svg><use href="#i-arrow"/></svg></a></div>
@@ -642,7 +662,7 @@ a{color:inherit}
     </div>
     <div class="faq">
       <details open><summary>What is XDemat?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>XDemat is a stock market services and trading technology brand offering account-opening assistance through its brokerage relationship, stock market education and tools such as XRover 5.</p></details>
-      <details><summary>Is XDemat associated with Angel One?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>XDemat provides account-opening assistance through its relationship with Angel One, subject to the applicable authorisation and regulatory requirements.</p></details>
+      <details><summary>Is XDemat associated with Angel One?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>Yes. XDemat is an authorised partner of Angel One and provides account-opening assistance through this relationship. Authorised Person: Amrutha K A, License No. BFIF01-G130506-00102-2026. Account opening is subject to Angel One's eligibility and KYC requirements.</p></details>
       <details><summary>What is XRover 5?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>XRover 5 is an Intelligent Candle System developed by XDemat to support chart analysis and trading decisions. Available functionality depends on the version and configuration.</p></details>
       <details><summary>Does XRover 5 guarantee profits?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>No. XRover 5 does not guarantee profits or prevent losses. Market conditions, data, execution and user decisions affect trading outcomes.</p></details>
       <details><summary>Can beginners use XRover 5?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>Beginners can explore the system as part of their learning process, but should first understand basic trading concepts, product settings and risk management.</p></details>
@@ -669,11 +689,17 @@ a{color:inherit}
       </div>
       <dl class="info">
         <div><dt>Company</dt><dd>XDemat</dd></div>
-        <div><dt>Email</dt><dd><span class="ph">Official support email</span></dd></div>
-        <div><dt>Phone / WhatsApp</dt><dd><span class="ph">Official business number</span></dd></div>
-        <div><dt>Office address</dt><dd><span class="ph">Registered / business address</span></dd></div>
-        <div><dt>Business hours</dt><dd><span class="ph">Working days and hours</span></dd></div>
+        <div><dt>Mobile / WhatsApp</dt><dd><a href="tel:+919747369666">+91 97473 69666</a></dd></div>
+        <div><dt>Email / Support</dt><dd><a href="mailto:info@xdemat.com">info@xdemat.com</a></dd></div>
+        <div><dt>Office</dt><dd>Keecheri, Pappinisseri P.O., Kannur, Kerala 670561</dd></div>
+        <div><dt>Authorised Person</dt><dd>Amrutha K A</dd></div>
+        <div><dt>License No.</dt><dd style="font-variant-numeric:tabular-nums">BFIF01-G130506-00102-2026</dd></div>
+        <div><dt>Partner</dt><dd>Authorised Partner of Angel One</dd></div>
       </dl>
+      <div class="contact-actions">
+        <a class="btn btn-gold" href="https://wa.me/919747369666" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn btn-line" href="tel:+919747369666">Call +91 97473 69666</a>
+      </div>
     </div>
 
     <form class="form" id="enquiry" novalidate>
@@ -717,7 +743,7 @@ a{color:inherit}
 
     <div class="panel" role="tabpanel" id="p-disc" aria-labelledby="t-disc">
       <p>The information provided on this website is for general informational and educational purposes only.</p>
-      <p>XDemat offers account-opening assistance through its stated brokerage relationship, educational content and trading analysis tools, including XRover 5.</p>
+      <p>XDemat offers account-opening assistance as an authorised partner of Angel One, educational content and trading analysis tools, including XRover 5.</p>
       <p>Nothing on this website should be interpreted as a guarantee of trading profits, a promise of investment returns or a guarantee against losses.</p>
       <p>XRover 5 is a trading decision-support tool. Its outputs and historical performance, where displayed, do not guarantee future results. Actual outcomes may vary due to market conditions, data feeds, platform settings, execution, brokerage charges, slippage and other factors.</p>
       <p>Users are responsible for their own trading decisions and should assess their financial circumstances, knowledge and risk tolerance before trading.</p>
@@ -746,7 +772,7 @@ a{color:inherit}
       <h4>Data security and retention</h4>
       <p>We take reasonable steps to protect information and retain it only as needed for legitimate business, contractual and legal purposes.</p>
       <h4>Your choices</h4>
-      <p>You may contact us to ask about your personal information, request corrections where applicable or raise a privacy concern. Contact: <span class="ph">Privacy contact email</span></p>
+      <p>You may contact us to ask about your personal information, request corrections where applicable or raise a privacy concern. Contact: info@xdemat.com</p>
     </div>
 
     <div class="panel" role="tabpanel" id="p-terms" aria-labelledby="t-terms" hidden>
@@ -757,7 +783,7 @@ a{color:inherit}
       <p>All intellectual property rights in XDemat's original website content, branding and proprietary product materials remain with their respective owners.</p>
       <p>Nothing on this website overrides the terms of Angel One, applicable broker documentation or relevant legal and regulatory requirements.</p>
       <p>To the extent permitted by law, XDemat disclaims liability for trading losses arising from market movements or reliance on general educational information or analytical tools. Nothing in these terms excludes liability that cannot lawfully be excluded.</p>
-      <p>Contact: <span class="ph">Official contact details</span></p>
+      <p>Contact: info@xdemat.com · +91 97473 69666 · Keecheri, Pappinisseri P.O., Kannur, Kerala 670561</p>
     </div>
   </div>
 </section>
@@ -768,7 +794,8 @@ a{color:inherit}
     <div>
       <a class="logo-card" href="#top" aria-label="XDemat home"><img src="assets/xdemat-logo.webp" alt="XDemat — Find Your Edge" width="132" height="64"></a>
       <p style="color:var(--on-navy);font-weight:500">Stock Market Services, Education &amp; Trading Technology</p>
-      <p style="margin-top:8px;max-width:44ch">Helping traders develop market knowledge and explore analytical tools designed to support informed trading decisions.</p>
+      <div style="margin-top:16px"><span class="ao-badge dark"><img src="assets/angel-one-logo.png" alt="Angel One" onerror="this.remove()"><span>Authorised Partner of <b>Angel One</b></span></span></div>
+      <p style="margin-top:14px;max-width:44ch">Helping traders develop market knowledge and explore analytical tools designed to support informed trading decisions.</p>
     </div>
     <div>
       <h5>Quick links</h5>
@@ -776,16 +803,16 @@ a{color:inherit}
     </div>
     <div>
       <h5>Legal</h5>
-      <ul><li><a href="#legal" data-tab="t-terms">Terms of Use</a></li><li><a href="#legal" data-tab="t-priv">Privacy Policy</a></li><li><a href="#legal" data-tab="t-risk">Risk Disclosure</a></li><li><a href="#legal" data-tab="t-disc">Disclaimer</a></li><li><a href="#contact">Grievance / Support Information</a></li></ul>
+      <ul><li><a href="#legal" data-tab="t-terms">Terms of Use</a></li><li><a href="#legal" data-tab="t-priv">Privacy Policy</a></li><li><a href="#legal" data-tab="t-risk">Risk Disclosure</a></li><li><a href="#legal" data-tab="t-disc">Disclaimer</a></li><li><a href="mailto:info@xdemat.com">Grievance / Support: info@xdemat.com</a></li></ul>
     </div>
   </div>
   <div class="wrap foot-disc">
     <p><strong>Important Risk Disclosure:</strong> Trading involves risk. XRover 5 is a trading decision-support tool and does not guarantee profits or prevent losses. Past performance is not indicative of future results.</p>
-    <p><strong>Brokerage Relationship:</strong> Account-opening assistance is provided through our stated relationship with Angel One, subject to the applicable authorisation, eligibility and broker terms.</p>
+    <p><strong>Brokerage Relationship:</strong> XDemat is an authorised partner of Angel One. Authorised Person: Amrutha K A, License No. BFIF01-G130506-00102-2026. Account opening is subject to Angel One's eligibility, KYC and broker terms.</p>
   </div>
   <div class="wrap foot-bottom">
     <span>© 2026 XDemat. All rights reserved.</span>
-    <span><span class="ph" style="color:var(--gold);border-color:var(--gold)">Legal business name · Authorised Person details · Registration info</span></span>
+    <span>Keecheri, Pappinisseri P.O., Kannur, Kerala 670561 · info@xdemat.com · +91 97473 69666</span>
   </div>
 </footer>
 
