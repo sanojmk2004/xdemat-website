@@ -132,6 +132,17 @@ a{color:inherit}
 .contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 .info a{text-decoration:none;color:var(--gold-ink)} .info a:hover{text-decoration:underline}
 
+/* Account opening card with QR */
+.open-card{margin-top:26px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;padding:30px 32px;border-radius:18px;background:var(--navy);border:1px solid var(--navy-line);color:var(--on-navy)}
+.open-card h4{font-size:24px;font-weight:700;margin:10px 0 8px}
+.open-card p{color:var(--on-navy-muted);max-width:56ch}
+.open-card .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.open-card .url{display:inline-block;margin-top:14px;font-family:var(--f-mono);font-size:13px;color:var(--gold-ink);word-break:break-all}
+.qr{background:#fff;border-radius:14px;padding:12px;text-align:center;width:196px}
+.qr img{width:172px;height:172px;display:block;image-rendering:pixelated}
+.qr span{display:block;font-size:12.5px;color:#0A1A35;font-weight:600;margin-top:6px}
+@media (max-width:720px){.open-card{grid-template-columns:1fr;padding:24px}.qr{justify-self:start}}
+
 /* Pillars */
 .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .pillar{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s ease,transform .2s ease}
@@ -342,7 +353,7 @@ a{color:inherit}
       <a href="#contact">Contact</a>
       <a href="#legal">Legal</a>
     </nav>
-    <a class="btn btn-gold head-cta" href="#account">Open an Account</a>
+    <a class="btn btn-gold head-cta" href="https://a.aonelink.in/ANGOne/ATizEbQ" target="_blank" rel="noopener">Open an Account</a>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
@@ -359,7 +370,7 @@ a{color:inherit}
       <p class="tag">Your journey towards smarter market participation starts here.</p>
       <p class="sub">XDemat brings together stock market account-opening assistance, trading education and innovative trading tools designed to support better-informed market decisions.</p>
       <div class="hero-ctas">
-        <a class="btn btn-gold" href="#account">Open an Account <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-gold" href="https://a.aonelink.in/ANGOne/ATizEbQ" target="_blank" rel="noopener">Open an Account <svg><use href="#i-arrow"/></svg></a>
         <a class="btn btn-ghost" href="#xrover">Explore XRover 5</a>
       </div>
       <div style="margin-top:30px"><span class="ao-badge dark"><span>Authorised Partner of</span><img src="assets/angel-one-logo.png" alt="Angel One"></span></div>
@@ -513,7 +524,19 @@ a{color:inherit}
             <dl><dt>Authorised Person</dt><dd>Amrutha K A</dd><dt>License No.</dt><dd>BFIF01-G130506-00102-2026</dd></dl>
           </div>
         </div>
-        <div class="actions"><a class="btn btn-gold" href="#contact" data-subject="account">Open Your Account <svg><use href="#i-arrow"/></svg></a></div>
+        <div class="open-card on-navy">
+          <div>
+            <span class="eyebrow">Open your account</span>
+            <h4>Open your Angel One account with XDemat</h4>
+            <p>Start your trading and Demat account online through XDemat's Angel One link. You complete the application and KYC on Angel One's secure page, and our team can guide you if you need help.</p>
+            <div class="btns">
+              <a class="btn btn-gold" href="https://a.aonelink.in/ANGOne/ATizEbQ" target="_blank" rel="noopener">Open Your Account <svg><use href="#i-arrow"/></svg></a>
+              <a class="btn btn-ghost" href="#contact" data-subject="account">Need help? Talk to us</a>
+            </div>
+            <a class="url" href="https://a.aonelink.in/ANGOne/ATizEbQ" target="_blank" rel="noopener">a.aonelink.in/ANGOne/ATizEbQ</a>
+          </div>
+          <div class="qr"><img src="assets/angel-one-qr.png" alt="QR code to open an Angel One account through XDemat" width="172" height="172"><span>Scan to open on your phone</span></div>
+        </div>
       </div>
     </div>
 
@@ -667,7 +690,7 @@ a{color:inherit}
       <details><summary>Does XRover 5 guarantee profits?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>No. XRover 5 does not guarantee profits or prevent losses. Market conditions, data, execution and user decisions affect trading outcomes.</p></details>
       <details><summary>Can beginners use XRover 5?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>Beginners can explore the system as part of their learning process, but should first understand basic trading concepts, product settings and risk management.</p></details>
       <details><summary>Does XDemat provide stock market training?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>XDemat offers or plans to offer educational resources and training covering market fundamentals, technical analysis, trading discipline and its trading tools. Check the current training catalogue for available courses.</p></details>
-      <details><summary>How do I open a trading and Demat account?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>Use the account-opening link or contact XDemat for assistance. Account opening is subject to the broker's application, eligibility and KYC requirements.</p></details>
+      <details><summary>How do I open a trading and Demat account?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>Use the "Open Your Account" button or scan the QR code in the Account Opening section, or contact XDemat for assistance. Account opening is subject to the broker's application, eligibility and KYC requirements.</p></details>
       <details><summary>Are historical results an indication of future performance?<span class="pm"><svg><use href="#i-plus"/></svg></span></summary><p>No. Historical, simulated or backtested results may not reflect future performance or actual execution. Trading may result in partial or total loss of the capital at risk.</p></details>
     </div>
   </div>
