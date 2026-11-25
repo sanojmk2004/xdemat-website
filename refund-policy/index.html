@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Refund &amp; Cancellation Policy | XDemat</title>
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="description" content="XDemat refund and cancellation policy for XRover 5 trial packs, monthly subscriptions and training.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: navy hero with an illustrated candle chart, then alternating light sections; XRover 5 gets its own premium navy band. */
+:root{
+  --bg:#F5F7FB; --surface:#FFFFFF; --surface-2:#EDF1F7;
+  --ink:#0E1A2E; --muted:#526079; --line:#D9E0EB;
+  --navy:#0A1A35; --navy-2:#11284E; --navy-line:#24406E;
+  --on-navy:#EEF2F8; --on-navy-muted:#A8B6CD;
+  --gold:#0A5BFD; --gold-soft:rgba(10,91,253,.10); --gold-ink:#0B4FD9;
+  --cta:#F7861E; --cta-hover:#FF9B3D; --head-bg:rgba(255,255,255,.97); --head-ink:#0A1A35; --head-muted:#46546D; --head-line:#E1E7F0;
+  --up:#1E9C6A; --down:#D04A40;
+  --f-display:"Outfit","Segoe UI",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:14px; --maxw:1180px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#07122A; --surface:#0D1E3B; --surface-2:#112647;
+  --ink:#E7ECF4; --muted:#9BA9BF; --line:#1E3356;
+  --navy:#040C1D; --navy-2:#0B1C3A; --navy-line:#1F3863;
+  --on-navy:#EEF2F8; --on-navy-muted:#A8B6CD;
+  --gold:#4C8FFF; --gold-soft:rgba(76,143,255,.16); --gold-ink:#86B5FF;
+  --up:#33B583; --down:#E0645A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#07122A; --surface:#0D1E3B; --surface-2:#112647;
+  --ink:#E7ECF4; --muted:#9BA9BF; --line:#1E3356;
+  --navy:#040C1D; --navy-2:#0B1C3A; --navy-line:#1F3863;
+  --on-navy:#EEF2F8; --on-navy-muted:#A8B6CD;
+  --gold:#4C8FFF; --gold-soft:rgba(76,143,255,.16); --gold-ink:#86B5FF;
+  --up:#33B583; --down:#E0645A; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+.on-navy,.pillar.feature,.path.x,.foot{--gold:#5B9BFF;--gold-ink:#8DB8FF;--gold-soft:rgba(91,155,255,.16)}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.section{padding-block:96px}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink);font-weight:500;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--gold);border-radius:2px}
+.on-navy .eyebrow{color:var(--gold)}
+.h2{font-size:clamp(30px,4vw,44px);font-weight:700}
+.lead{font-size:18.5px;color:var(--muted);max-width:62ch}
+.sec-head{display:grid;gap:16px;margin-bottom:48px;max-width:760px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 15.5px/1 var(--f-body);padding:15px 22px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s ease,border-color .2s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-gold{background:linear-gradient(135deg,var(--cta-hover),var(--cta));color:#1B1004;box-shadow:0 8px 20px -10px rgba(247,134,30,.7)}
+.btn-gold:hover{background:var(--cta-hover)}
+.btn-ghost{border-color:var(--navy-line);color:var(--on-navy)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-line{border-color:var(--line);color:var(--ink);background:var(--surface)}
+.btn-line:hover{border-color:var(--gold)}
+.btn svg{width:16px;height:16px}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--gold-ink);text-decoration:none;font-size:15px}
+.link-arrow:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* Header */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--head-bg);backdrop-filter:blur(10px);border-bottom:1px solid var(--head-line);box-shadow:0 6px 24px -18px rgba(10,26,53,.5)}
+.head-row{display:flex;align-items:center;gap:24px;height:92px}
+.logo-img{display:block;height:74px;width:auto}
+@media (max-width:960px){.head-row{height:76px}.logo-img{height:60px}}
+.logo-card{display:inline-block;background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:18px}
+.logo-card img{display:block;height:64px;width:auto}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--on-navy);font:700 23px/1 var(--f-display);letter-spacing:-.01em}
+.logo b{color:var(--gold);font-weight:700}
+.logo svg{width:26px;height:26px}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{color:var(--head-muted);text-decoration:none;font-weight:500;font-size:15px;padding:8px 12px;border-radius:8px}
+.nav a:hover{color:var(--head-ink);background:#EEF3FB}
+.head-cta{padding:11px 18px;font-size:14.5px}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--head-line);color:var(--head-ink);border-radius:10px;width:44px;height:44px;cursor:pointer}
+.menu-btn svg{width:20px;height:20px}
+@media (max-width:960px){
+  .menu-btn{display:inline-flex;align-items:center;justify-content:center}
+  .head-cta{display:none}
+  .nav{position:absolute;left:0;right:0;top:76px;flex-direction:column;background:#fff;border-bottom:1px solid var(--head-line);padding:10px max(20px,env(safe-area-inset-right,0px)) 18px max(20px,env(safe-area-inset-left,0px));display:none}
+  .nav.open{display:flex}
+  .nav a{padding:12px 8px;font-size:16px}
+}
+
+/* Hero */
+.hero{background:radial-gradient(1000px 500px at 85% 10%,rgba(30,110,255,.13),transparent 60%),linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);color:var(--on-navy);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(180deg,#000 30%,transparent);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-block:80px 88px;position:relative;z-index:1}
+.hero h1{font-size:clamp(38px,5vw,58px);font-weight:700;letter-spacing:-.02em}
+.hero h1 span{color:var(--gold)}
+.hero .tag{font-size:19px;color:var(--on-navy);margin-top:22px;font-weight:500}
+.hero .sub{color:var(--on-navy-muted);margin-top:12px;max-width:54ch;font-size:17px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:34px;font-size:14px;color:var(--on-navy-muted)}
+.hero-meta span{display:inline-flex;align-items:center;gap:8px}
+.hero-meta i{width:7px;height:7px;border-radius:50%;background:var(--gold);display:inline-block}
+.chart-card{background:rgba(6,15,32,.55);border:1px solid var(--navy-line);border-radius:18px;padding:18px 18px 12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6);min-width:0}
+.chart-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--f-mono);font-size:12.5px;color:var(--on-navy-muted);margin-bottom:8px;flex-wrap:wrap}
+.chart-top strong{color:var(--on-navy);font-weight:500}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid var(--navy-line);font-size:11.5px}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+#chart{width:100%;height:auto;display:block}
+.chart-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--f-mono);font-size:11.5px;color:var(--on-navy-muted);padding-top:8px;border-top:1px dashed var(--navy-line);margin-top:6px}
+.chart-legend span{display:inline-flex;align-items:center;gap:6px}
+.chart-legend b{width:14px;height:3px;border-radius:2px;display:inline-block}
+.chart-note{font-size:11.5px;color:var(--on-navy-muted);margin-top:6px;opacity:.85}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px;padding-block:56px 64px}}
+
+.risk-strip{background:var(--surface-2);border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.risk-strip .wrap{padding-block:12px;display:flex;gap:10px;align-items:flex-start}
+.risk-strip svg{flex:none;width:18px;height:18px;color:var(--gold-ink);margin-top:2px}
+
+/* Angel One partner badge */
+.ao-badge{display:inline-flex;align-items:center;gap:12px;padding:6px 6px 6px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:14px;color:var(--ink)}
+.ao-badge img{height:30px;width:auto;display:block;background:#fff;border-radius:6px;padding:4px 8px}
+.ao-badge b{font-weight:700}
+.ao-badge.dark{background:rgba(255,255,255,.06);border-color:var(--navy-line);color:var(--on-navy)}
+.ap-card{margin-top:22px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.ap-card .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-ink)}
+.ap-card dl{margin:6px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14.5px}
+.ap-card dt{color:var(--muted)} .ap-card dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;word-break:break-word}
+@media (max-width:560px){.ap-card{grid-template-columns:1fr}}
+.contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.info a{text-decoration:none;color:var(--gold-ink)} .info a:hover{text-decoration:underline}
+
+/* Account opening card with QR */
+.open-card{margin-top:26px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;padding:30px 32px;border-radius:18px;background:var(--navy);border:1px solid var(--navy-line);color:var(--on-navy)}
+.open-card h4{font-size:24px;font-weight:700;margin:10px 0 8px}
+.open-card p{color:var(--on-navy-muted);max-width:56ch}
+.open-card .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.open-card .url{display:inline-block;margin-top:14px;font-family:var(--f-mono);font-size:13px;color:var(--gold-ink);word-break:break-all}
+.qr{background:#fff;border-radius:14px;padding:12px;text-align:center;width:196px}
+.qr img{width:172px;height:172px;display:block;image-rendering:pixelated}
+.qr span{display:block;font-size:12.5px;color:#0A1A35;font-weight:600;margin-top:6px}
+@media (max-width:720px){.open-card{grid-template-columns:1fr;padding:24px}.qr{justify-self:start}}
+
+/* Pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s ease,transform .2s ease}
+.pillar:hover{border-color:var(--gold);transform:translateY(-2px)}
+.pillar .ico{width:48px;height:48px;border-radius:12px;background:var(--gold-soft);color:var(--gold-ink);display:grid;place-items:center}
+.pillar .ico svg{width:24px;height:24px}
+.pillar h3{font-size:22px;font-weight:600}
+.pillar p{color:var(--muted);flex:1}
+.pillar.feature{background:var(--navy);border-color:var(--navy-line);color:var(--on-navy)}
+.pillar.feature p{color:var(--on-navy-muted)}
+.pillar.feature .ico{background:rgba(76,143,255,.16);color:var(--gold)}
+.pillar.feature .link-arrow{color:var(--gold)}
+@media (max-width:900px){.pillars{grid-template-columns:1fr}}
+
+/* Why */
+.why{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.why-list{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.why-list li{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.why-list .chk{width:28px;height:28px;border-radius:50%;background:var(--gold-soft);color:var(--gold-ink);display:grid;place-items:center}
+.why-list .chk svg{width:15px;height:15px}
+.why-list h4{font-size:18px;font-weight:600;margin-bottom:4px}
+.why-list p{color:var(--muted);font-size:15.5px}
+@media (max-width:900px){.why{grid-template-columns:1fr;gap:32px}}
+
+/* About */
+.about-band{background:var(--surface);border-block:1px solid var(--line)}
+.about-top{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.about-top .body{display:grid;gap:16px;color:var(--muted);font-size:17px}
+.mv{display:grid;gap:16px}
+.mv-card{border-radius:var(--r);padding:26px;border:1px solid var(--line);background:var(--bg)}
+.mv-card .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:8px}
+.mv-card p{font-family:var(--f-display);font-size:20px;line-height:1.4;font-weight:500}
+.approach{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:64px}
+.ap h4{font-size:18px;font-weight:600;margin:14px 0 6px}
+.ap p{color:var(--muted);font-size:15px}
+.ap .bar{height:3px;width:40px;background:var(--gold);border-radius:3px}
+.commit{margin-top:56px;padding:30px 32px;border-radius:var(--r);background:var(--surface-2);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+.commit svg{width:30px;height:30px;color:var(--gold-ink)}
+.commit p{color:var(--muted)}
+.commit p strong{color:var(--ink)}
+@media (max-width:900px){.about-top{grid-template-columns:1fr;gap:32px}.approach{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.approach{grid-template-columns:1fr}.commit{grid-template-columns:1fr}}
+
+/* Services */
+.svc{display:grid;grid-template-columns:200px 1fr;gap:40px;padding-block:44px;border-top:1px solid var(--line)}
+.svc:first-of-type{border-top:0;padding-top:0}
+.svc-tag{font-family:var(--f-mono);font-size:13px;color:var(--muted);display:grid;gap:6px;align-content:start}
+.svc-tag b{font-family:var(--f-display);font-size:44px;color:var(--gold);font-weight:600;line-height:1}
+.svc h3{font-size:clamp(24px,3vw,30px);font-weight:700;margin-bottom:12px}
+.svc .intro{color:var(--muted);max-width:66ch;margin-bottom:22px}
+.svc-cols{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+.ticks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ticks li{position:relative;padding-left:28px}
+.ticks li::before{content:"";position:absolute;left:0;top:.5em;width:14px;height:8px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
+.note{border-left:3px solid var(--gold);background:var(--surface);padding:16px 18px;border-radius:0 10px 10px 0;font-size:14.5px;color:var(--muted)}
+.note strong{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px}
+.svc .actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:900px){.svc{grid-template-columns:1fr;gap:16px}.svc-tag{grid-auto-flow:column;justify-content:start;align-items:center;gap:12px}.svc-tag b{font-size:32px}.svc-cols{grid-template-columns:1fr}}
+
+/* XRover band */
+.xr{background:radial-gradient(900px 480px at 10% 0%,rgba(30,110,255,.12),transparent 60%),var(--navy);color:var(--on-navy)}
+.xr .lead{color:var(--on-navy-muted)}
+.xr-head{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:end;margin-bottom:56px}
+.xr-title{font-size:clamp(38px,5vw,60px);font-weight:700;letter-spacing:-.02em}
+.xr-title span{color:var(--gold)}
+.xr-sub{font-family:var(--f-mono);font-size:13px;letter-spacing:.08em;color:var(--on-navy-muted);margin-top:10px;text-transform:uppercase}
+.xr-quote{border-left:2px solid var(--gold);padding-left:20px;font-family:var(--f-display);font-size:22px;line-height:1.4;font-weight:500}
+.xr-quote small{display:block;font-family:var(--f-body);font-size:15px;color:var(--on-navy-muted);font-weight:400;margin-top:10px;line-height:1.6}
+.concepts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--navy-line);border:1px solid var(--navy-line);border-radius:18px;overflow:hidden}
+.concept{background:var(--navy-2);padding:28px 26px;display:grid;gap:10px;align-content:start}
+.concept .ci{width:42px;height:42px;border-radius:10px;border:1px solid var(--navy-line);color:var(--gold);display:grid;place-items:center}
+.concept .ci svg{width:22px;height:22px}
+.concept h4{font-size:19px;font-weight:600}
+.concept p{color:var(--on-navy-muted);font-size:15px}
+@media (max-width:960px){.xr-head{grid-template-columns:1fr;gap:28px}.concepts{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.concepts{grid-template-columns:1fr}}
+.xr-lower{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.xr-box{border:1px solid var(--navy-line);border-radius:18px;padding:28px;background:rgba(255,255,255,.02)}
+.xr-box h3{font-size:21px;font-weight:600;margin-bottom:16px}
+.xr-box .ticks li{color:var(--on-navy)}
+.ver{display:grid;gap:10px}
+.ver-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--navy-line);border-radius:10px;flex-wrap:wrap}
+.ver-row b{font-family:var(--f-display);font-weight:600;font-size:16.5px}
+.ver-row span{font-family:var(--f-mono);font-size:12px;color:var(--on-navy-muted)}
+.ver-row.cur{border-color:var(--gold)}
+.ver-row.cur span{color:var(--gold)}
+.modes{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.modes span{font-size:13.5px;padding:6px 12px;border-radius:999px;background:rgba(76,143,255,.12);color:var(--gold)}
+.xr-box .fine{font-size:13.5px;color:var(--on-navy-muted);margin-top:14px}
+.promise{margin-top:24px;border-radius:18px;padding:32px;background:linear-gradient(135deg,rgba(76,143,255,.14),rgba(76,143,255,.04));border:1px solid rgba(76,143,255,.35);display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+.promise h3{font-size:24px;font-weight:700;margin-bottom:10px}
+.promise p{color:var(--on-navy-muted);max-width:70ch}
+.promise p+p{margin-top:8px}
+.promise .btns{display:flex;flex-direction:column;gap:10px;min-width:220px}
+@media (max-width:900px){.xr-lower{grid-template-columns:1fr}.promise{grid-template-columns:1fr}.promise .btns{flex-direction:row;flex-wrap:wrap;min-width:0}}
+
+/* Education */
+.paths{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.path{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;display:flex;flex-direction:column;gap:14px}
+.path .lvl{font-family:var(--f-mono);font-size:12px;color:var(--gold-ink);letter-spacing:.1em;text-transform:uppercase}
+.path h3{font-size:21px;font-weight:600}
+.path ul{margin:0;padding:0;list-style:none;display:grid;gap:9px;font-size:15px;color:var(--muted)}
+.path li{padding-left:16px;position:relative}
+.path li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.path.x{background:var(--navy);border-color:var(--navy-line);color:var(--on-navy)}
+.path.x ul{color:var(--on-navy-muted)}
+.path.x .lvl{color:var(--gold)}
+.edu-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;margin-top:32px;padding-top:28px;border-top:1px solid var(--line)}
+.edu-foot p{color:var(--muted);max-width:70ch;font-size:15px}
+@media (max-width:1040px){.paths{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.paths{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-family:var(--f-display);font-size:19px;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .2s ease,background .2s}
+.faq summary .pm svg{width:14px;height:14px}
+.faq details[open] .pm{transform:rotate(45deg);background:var(--gold-soft);border-color:transparent}
+.faq details p{padding:0 48px 22px 0;color:var(--muted)}
+@media (max-width:900px){.faq-wrap{grid-template-columns:1fr;gap:28px}.faq details p{padding-right:0}}
+
+/* Contact */
+.contact-band{background:var(--surface);border-block:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.depts{display:grid;gap:14px;margin-top:32px}
+.dept{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.dept .ico{width:44px;height:44px;border-radius:10px;background:var(--gold-soft);color:var(--gold-ink);display:grid;place-items:center}
+.dept .ico svg{width:22px;height:22px}
+.dept h4{font-size:17px;font-weight:600}
+.dept p{font-size:14.5px;color:var(--muted)}
+.info{margin-top:28px;display:grid;gap:0;border-top:1px solid var(--line)}
+.info div{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.info dt{color:var(--muted)}
+.info dd{margin:0;font-weight:500}
+.ph{display:inline-block;font-family:var(--f-mono);font-size:12.5px;font-weight:400;color:var(--gold-ink);border:1px dashed var(--gold);border-radius:6px;padding:2px 8px}
+@media (max-width:480px){.info div{grid-template-columns:1fr;gap:2px}}
+.form{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:32px;display:grid;gap:16px}
+.form h3{font-size:24px;font-weight:700}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-size:13.5px;font-weight:600}
+.field input,.field select,.field textarea{font:inherit;font-size:15.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.form .warn{display:flex;gap:10px;font-size:13.5px;color:var(--muted);background:var(--surface-2);padding:12px 14px;border-radius:10px}
+.form .warn svg{flex:none;width:18px;height:18px;color:var(--down);margin-top:2px}
+.form .btn{justify-self:start}
+.form-status{font-size:14.5px;color:var(--up);font-weight:500}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+@media (max-width:520px){.form{padding:22px}.form .row{grid-template-columns:1fr}}
+
+/* Legal */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:28px}
+.tab{font:600 15px var(--f-body);background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:12px 14px;cursor:pointer;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
+.panel{max-width:78ch;display:grid;gap:14px;color:var(--muted);font-size:15.5px}
+.panel h4{color:var(--ink);font-size:18px;font-weight:600;margin-top:10px}
+.panel strong{color:var(--ink)}
+.panel .ticks li{color:var(--muted)}
+.callout{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--down);padding:14px 16px;border-radius:0 10px 10px 0;color:var(--ink);font-weight:600}
+
+/* Footer */
+.foot{background:var(--navy);color:var(--on-navy-muted);font-size:14.5px}
+.foot-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;padding-block:64px 40px}
+
+.foot h5{font:600 13px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-navy);margin:0 0 14px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--gold)}
+.foot-disc{border-top:1px solid var(--navy-line);padding-block:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px;font-size:13.5px}
+.foot-disc strong{color:var(--on-navy)}
+.foot-bottom{border-top:1px solid var(--navy-line);padding-block:20px 28px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px}
+@media (max-width:900px){.foot-top{grid-template-columns:1fr 1fr}.foot-top>div:first-child{grid-column:1/-1}.foot-disc{grid-template-columns:1fr}}
+@media (max-width:520px){.foot-top{grid-template-columns:1fr}.section{padding-block:68px}}
+
+/* Policy page */
+.pol-hero{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);color:var(--on-navy)}
+.pol-hero .wrap{padding-block:56px 48px;display:grid;gap:14px}
+.pol-hero h1{font-size:clamp(32px,4.4vw,48px);font-weight:700}
+.pol-hero p{color:var(--on-navy-muted);max-width:66ch}
+.pol-meta{font-family:var(--f-mono);font-size:12.5px;color:var(--on-navy-muted)}
+.pol-jump{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.pol-jump a{color:var(--on-navy);text-decoration:none;border:1px solid var(--navy-line);border-radius:999px;padding:8px 16px;font-size:14.5px;font-weight:600}
+.pol-jump a:hover{border-color:var(--gold)}
+.pol{padding-block:56px 80px}
+.pol-body{max-width:780px;display:grid;gap:56px}
+.pol-sec{display:grid;gap:18px}
+.pol-sec h2{font-size:clamp(26px,3vw,34px);font-weight:700}
+.pol-sec h3{font-size:19px;font-weight:600;margin-top:10px}
+.pol-sec p,.pol-sec li{color:var(--muted)}
+.pol-sec strong{color:var(--ink)}
+.pol-sec ul,.pol-sec ol{margin:0;padding-left:22px;display:grid;gap:8px}
+.pol-box{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:18px 20px}
+.pol-box.warn{border-left:3px solid var(--down);border-radius:0 12px 12px 0}
+.pol-table{width:100%;border-collapse:collapse;font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.pol-table th,.pol-table td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.pol-table th{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-ink);background:var(--surface-2)}
+.pol-table td{color:var(--muted)} .pol-table td:first-child{color:var(--ink);font-weight:600}
+.pol-table tr:last-child td{border-bottom:0}
+.tbl-wrap{overflow-x:auto}
+.pol-contact{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:15px}
+.pol-contact dt{color:var(--muted)} .pol-contact dd{margin:0;font-weight:600;color:var(--ink)}
+.pol-contact a{color:var(--gold-ink)}
+@media (max-width:480px){.pol-contact{grid-template-columns:1fr}.pol-contact dd{margin-bottom:8px}}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="logo" href="/#top" aria-label="XDemat home"><img class="logo-img" src="/assets/xdemat-logo.webp" alt="XDemat — Find Your Edge" width="153" height="74"></a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/#about">About</a>
+      <a href="/#services">Services</a>
+      <a href="/#xrover">XRover 5</a>
+      <a href="/#education">Education</a>
+      <a href="/#faq">FAQs</a>
+      <a href="/#contact">Contact</a>
+      <a href="/#legal">Legal</a>
+    </nav>
+    <a class="btn btn-gold head-cta" href="https://a.aonelink.in/ANGOne/ATizEbQ" target="_blank" rel="noopener">Open an Account</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="pol-hero on-navy">
+  <div class="wrap">
+    <span class="eyebrow">Legal</span>
+    <h1>Refund &amp; Cancellation Policy</h1>
+    <p>How refunds and cancellations work for payments made to XDemat for XRover 5 trial packs, monthly subscriptions and training courses.</p>
+    <p class="pol-meta">Last updated: 25 November 2026</p>
+    <div class="pol-jump"><a href="#refund">Refund Policy</a><a href="#cancellation">Cancellation Policy</a></div>
+  </div>
+</section>
+
+<section class="wrap pol">
+  <div class="pol-body">
+
+    <div class="pol-sec">
+      <h2>Scope</h2>
+      <p>This policy applies to payments made directly to XDemat for:</p>
+      <ul>
+        <li><strong>XRover 5 trial packs</strong> (3 trading days of access).</li>
+        <li><strong>XRover 5 monthly subscriptions</strong>, including access to the invite-only TradingView indicators, signal notifications and training videos that come with the plan.</li>
+        <li><strong>Training courses</strong> offered by XDemat, such as the XRover 5 Strategy Course.</li>
+      </ul>
+      <div class="pol-box"><p><strong>Account opening with Angel One:</strong> XDemat does not charge you for account-opening assistance. Any account charges, brokerage, deposits or withdrawals are handled by Angel One under Angel One's own terms and policies, and refunds for them must be requested from Angel One.</p></div>
+    </div>
+
+    <div class="pol-sec" id="refund">
+      <h2>Refund Policy</h2>
+      <p>Our products are digital services. Access to the indicators, signals and training videos is given to you shortly after payment and cannot be returned once used. For this reason, <strong>payments are non-refundable once access has been activated</strong>, except in the cases listed below.</p>
+
+      <h3>When you are eligible for a refund</h3>
+      <ul>
+        <li><strong>Duplicate payment:</strong> you were charged twice for the same plan.</li>
+        <li><strong>Wrong amount:</strong> you were charged more than the published price of the plan you chose. The extra amount is refunded.</li>
+        <li><strong>Access not activated:</strong> you paid, but we could not activate your access within 2 trading days of confirming your payment.</li>
+        <li><strong>Cancelled before activation:</strong> you cancelled before your access was activated (see the Cancellation Policy below).</li>
+        <li><strong>Service not available from us:</strong> XDemat is unable to provide the plan or course you paid for.</li>
+      </ul>
+
+      <h3>When refunds are not given</h3>
+      <ul>
+        <li>After access to a trial pack, subscription or course has been activated, including if you stop using it partway through the period.</li>
+        <li>For trading losses, missed trades or results that did not meet your expectations. XRover 5 is an analysis tool and does not guarantee profits.</li>
+        <li>For problems caused by your own setup, such as your TradingView account, internet connection, broker platform or device.</li>
+        <li>When access is suspended or cancelled because of a breach of our Terms &amp; Conditions, such as sharing your access, reselling signals or copying our materials.</li>
+      </ul>
+
+      <h3>How to request a refund</h3>
+      <ol>
+        <li>Email <a href="mailto:info@xdemat.com">info@xdemat.com</a> within <strong>7 days of the payment</strong>.</li>
+        <li>Include your name, the mobile number registered with us, the plan you paid for, the payment date, and the transaction ID or a payment screenshot.</li>
+        <li>Tell us the reason for your request.</li>
+      </ol>
+
+      <h3>Processing time</h3>
+      <div class="tbl-wrap"><table class="pol-table">
+        <tr><th>Step</th><th>Timeline</th></tr>
+        <tr><td>We review your request</td><td>Within 3 working days of receiving it</td></tr>
+        <tr><td>Approved refund is sent</td><td>Within 7 working days of approval</td></tr>
+        <tr><td>Refund method</td><td>To the original payment method (UPI, bank account or card). Payments made in USD/USDT are refunded by the same method, less any network or transfer fees.</td></tr>
+      </table></div>
+      <p>Your bank or payment provider may take a few more days to show the credit in your account.</p>
+    </div>
+
+    <div class="pol-sec" id="cancellation">
+      <h2>Cancellation Policy</h2>
+      <p>All plans are prepaid for a fixed period. <strong>There is no automatic renewal or auto-debit.</strong> You renew only when you choose to make a new payment.</p>
+
+      <h3>Access periods</h3>
+      <div class="tbl-wrap"><table class="pol-table">
+        <tr><th>Plan</th><th>Period</th></tr>
+        <tr><td>Trial pack</td><td>3 trading days</td></tr>
+        <tr><td>Monthly subscription</td><td>1 month, counted in trading days</td></tr>
+        <tr><td>Training course</td><td>The access period shown when you buy the course</td></tr>
+      </table></div>
+      <p>Trading days are Monday to Friday. Saturdays and Sundays are not counted. If your access is given after 9:30 AM, your period starts on the next trading day.</p>
+
+      <h3>How to cancel</h3>
+      <ul>
+        <li><strong>To stop your subscription:</strong> simply do not renew it. Your access ends automatically at the end of the period you paid for. You can also tell us by email or WhatsApp so we stop sending renewal reminders.</li>
+        <li><strong>Before access is activated:</strong> email <a href="mailto:info@xdemat.com">info@xdemat.com</a> or message us on WhatsApp before your access is activated, and we will cancel the order and refund the full amount.</li>
+        <li><strong>After access is activated:</strong> you can cancel at any time, and your access continues until the end of the paid period. No refund is given for the remaining days.</li>
+      </ul>
+
+      <h3>Cancellation by XDemat</h3>
+      <p>We may suspend or cancel access without a refund if you break our Terms &amp; Conditions, for example by sharing your login or indicator access, reselling or redistributing signals, or copying our training material. If we cancel a plan for any other reason, we will refund the unused portion of your payment.</p>
+    </div>
+
+    <div class="pol-sec">
+      <h2>Changes to this policy</h2>
+      <p>We may update this policy from time to time. The version on this page, with the date shown at the top, applies to payments made on or after that date.</p>
+    </div>
+
+    <div class="pol-sec">
+      <h2>Contact us</h2>
+      <dl class="pol-contact">
+        <dt>Email</dt><dd><a href="mailto:info@xdemat.com">info@xdemat.com</a></dd>
+        <dt>Mobile / WhatsApp</dt><dd><a href="tel:+919747369666">+91 97473 69666</a></dd>
+        <dt>Office</dt><dd>XDemat, Keecheri, Pappinisseri P.O., Kannur, Kerala 670561</dd>
+      </dl>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-top">
+    <div>
+      <a class="logo-card" href="/#top" aria-label="XDemat home"><img src="/assets/xdemat-logo.webp" alt="XDemat — Find Your Edge" width="132" height="64"></a>
+      <p style="color:var(--on-navy);font-weight:500">Stock Market Services, Education &amp; Trading Technology</p>
+      <div style="margin-top:16px"><span class="ao-badge dark"><span>Authorised Partner of</span><img src="/assets/angel-one-logo.png" alt="Angel One"></span></div>
+      <p style="margin-top:14px;max-width:44ch">Helping traders develop market knowledge and explore analytical tools designed to support informed trading decisions.</p>
+    </div>
+    <div>
+      <h5>Quick links</h5>
+      <ul><li><a href="/#about">About Us</a></li><li><a href="/#account">Account Opening</a></li><li><a href="/#education">Education</a></li><li><a href="/#xrover">XRover 5</a></li><li><a href="/#contact">Contact Us</a></li></ul>
+    </div>
+    <div>
+      <h5>Legal</h5>
+      <ul><li><a href="/#legal">Terms of Use</a></li><li><a href="/#legal">Privacy Policy</a></li><li><a href="/#legal">Risk Disclosure</a></li><li><a href="/#legal">Disclaimer</a></li><li><a href="/refund-policy/">Refund Policy</a></li><li><a href="/refund-policy/#cancellation">Cancellation Policy</a></li><li><a href="mailto:info@xdemat.com">Grievance / Support: info@xdemat.com</a></li></ul>
+    </div>
+  </div>
+  <div class="wrap foot-disc">
+    <p><strong>Important Risk Disclosure:</strong> Trading involves risk. XRover 5 is a trading decision-support tool and does not guarantee profits or prevent losses. Past performance is not indicative of future results.</p>
+    <p><strong>Brokerage Relationship:</strong> XDemat is an authorised partner of Angel One. Authorised Person: Amrutha K A, License No. BFIF01-G130506-00102-2026. Account opening is subject to Angel One's eligibility, KYC and broker terms.</p>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 XDemat. All rights reserved.</span>
+    <span>Keecheri, Pappinisseri P.O., Kannur, Kerala 670561 · info@xdemat.com · +91 97473 69666</span>
+  </div>
+</footer>
+<script>
+(function(){var b=document.getElementById('menuBtn'),n=document.getElementById('nav');if(!b||!n)return;
+b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});})();
+</script>
+</body>
+</html>

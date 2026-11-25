@@ -5,6 +5,10 @@ RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
 RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 
+# Short addresses for the policy page
+RewriteRule ^(refund-policy|refund-and-cancellation-policy)$ /refund-policy/ [L,R=301]
+RewriteRule ^cancellation-policy/?$ /refund-policy/#cancellation [L,R=301,NE]
+
 # Cache images for a week
 <IfModule mod_expires.c>
   ExpiresActive On
